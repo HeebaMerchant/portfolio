@@ -1,0 +1,371 @@
+/* Global styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: 'CustomFont';
+    src: url('aptly.ttf');
+}
+
+@font-face {
+    font-family: 'CasualFont';
+    src: url('casualfont.otf');
+}
+
+body {
+    /* font-family: "CustomFont"; */
+    background: #121212;
+    color: #FFFFFF;
+    overflow-x: hidden;
+}
+
+/* Top Navigation Bar - Keeping original styles */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px) brightness(1.2);
+    -webkit-backdrop-filter: blur(8px) brightness(1.2);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    color: rgb(255, 255, 255);
+    font-family: "CustomFont";
+    font-size: 20px;
+    z-index: 20;
+    background-color: rgba(30, 30, 30, 0.763);
+}
+
+nav a {
+    color: inherit;
+    text-decoration: none;
+    margin: 0 20px;
+    transition: color 0.3s ease;
+    padding: 8px 0;
+    position: relative;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #ab64f3;
+    transition: width 0.3s ease;
+}
+
+nav a.active::after {
+    width: 100%;
+}
+
+/* Main content styles */
+.content-main {
+    margin-top: 70px;
+}
+
+/* Introduction section */
+#section-introduction {
+    min-height: 100vh;
+    padding: 2rem;
+    background: #121212;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.intro-content {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+
+.intro-text {
+    flex: 1;
+}
+
+.main-heading {
+    font-family: "CustomFont";
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+}
+
+.subtitle {
+    font-family: "CasualFont";
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    margin-left: 10%;
+}
+
+.highlight {
+    color: #ab64f3;
+}
+
+.location {
+    font-family: "CasualFont";
+    color: #808080;
+    margin-bottom: 2rem;
+    margin-left: 9%;
+}
+
+/* Profile card */
+.profile-card {
+    text-align: center;
+    max-width: 400px;
+}
+
+.profile-image {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 1.5rem;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-info h2 {
+    margin-bottom: 0.5rem;
+}
+
+.profile-title {
+    color: #ab64f3;
+    margin-bottom: 1rem;
+}
+
+.profile-quote {
+    font-style: italic;
+    color: #808080;
+}
+
+/* Project */
+
+/* Heading styles */
+.content-section h1 {
+    font-family: "CustomFont";
+    font-size: 4rem;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 10%;
+}
+
+  .content-section h3 {
+    font-size: 1rem;
+    margin-left: 10%;
+  }
+  
+  .project_container {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+    display: flex; /* Flexbox layout for horizontal alignment */
+    justify-content: space-between;
+    text-align: center;
+  }
+  
+  /* ALL CARD STYLING */
+  .side {
+      position: absolute;
+      text-align: center;
+      width: 100%;
+      height: 100%;
+      padding: 20px 50px;
+      color: #000000;
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      border-radius: 20px;
+  }
+  
+  .contents {
+      transform: translatez(70px) scale(0.8);
+      line-height: 1.5em;
+  }
+  .contents h2 {
+    font-size: 2rem;
+  }
+  .contents p {
+      margin-top: 50px;
+      line-height: 2em;
+  }
+  .content h2:before {
+      content: "";
+      position: absolute;
+      bottom: -20px;
+      height: 3px;
+      background-color: rgb(255, 255, 255);
+      width: 70px;
+      left: 50%;
+      transform: translateX(-50%);
+  }
+  .front {
+      z-index: 2;
+      background-size: 100vh;
+      background-size: cover;
+      /* background-image: url(https://userscontent2.emaze.com/images/f9538183-0ff9-478f-b964-c8ab90421e3b/3d28e192fda5c17250f96a2779c84475.jpg); */
+  }
+  .back {
+      background-color: #333;
+      transform: rotateY(180deg);
+      z-index: 0;
+      padding-top: 10px;
+      /* background-image: url(https://userscontent2.emaze.com/images/f9538183-0ff9-478f-b964-c8ab90421e3b/3d28e192fda5c17250f96a2779c84475.jpg); */
+  }
+  
+  .back h1 {
+      margin: 0;
+  }
+  
+  /* box of flip cards */
+  .FDP-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10%;
+    margin-top: 5%;
+    padding: 15px;
+    font-size: 30px;
+    background-color: rgb(255, 255, 255);
+    margin-top: 10px;
+  
+    /* Ensure the element is a square */
+    width: 500px;  /* Adjust this value as needed */
+    height: 500px; /* Same value as width */
+  
+    /* Box shadow for aesthetics */
+    box-shadow: rgba(0, 0, 0, 0.025) 0px 0px 0px 1px,
+                rgba(0, 0, 0, 0.05) 0px 1px 0px 0px,
+                rgba(0, 0, 0, 0.03) 0px 0px 8px 0px,
+                rgba(0, 0, 0, 0.1) 0px 20px 30px 0px;
+  
+    /* Optional: Keep the corners slightly rounded */
+    border-radius: 5%;
+    -webkit-transition: 1.5s ease-in-out;
+      transition: 1.5s ease-in-out;
+      transform-style: preserve-3d;
+  }
+  
+  .ETD-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10%;
+    margin-top: 5%;
+    padding: 15px;
+    font-size: 30px;
+    background-color: rgb(251, 251, 251);
+    margin-top: 10px;
+  
+    /* Ensure the element is a square */
+    width: 500px;  /* Adjust this value as needed */
+    height: 500px; /* Same value as width */
+  
+    /* Box shadow for aesthetics */
+    box-shadow: rgba(0, 0, 0, 0.025) 0px 0px 0px 1px,
+                rgba(0, 0, 0, 0.05) 0px 1px 0px 0px,
+                rgba(0, 0, 0, 0.03) 0px 0px 8px 0px,
+                rgba(0, 0, 0, 0.1) 0px 20px 30px 0px;
+  
+    /* Optional: Keep the corners slightly rounded */
+    border-radius: 5%;
+  
+    /* flip */
+    -webkit-transition: 1.5s ease-in-out;
+      transition: 1.5s ease-in-out;
+      transform-style: preserve-3d;
+  }
+  
+  .AFF-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10%;
+    margin-top: 5%;
+    padding: 15px;
+    font-size: 30px;
+    background-color: rgb(251, 251, 251);
+    margin-top: 10px;
+  
+    /* Ensure the element is a square */
+    width: 500px;  /* Adjust this value as needed */
+    height: 500px; /* Same value as width */
+  
+    /* Box shadow for aesthetics */
+    box-shadow: rgba(0, 0, 0, 0.025) 0px 0px 0px 1px,
+                rgba(0, 0, 0, 0.05) 0px 1px 0px 0px,
+                rgba(0, 0, 0, 0.03) 0px 0px 8px 0px,
+                rgba(0, 0, 0, 0.1) 0px 20px 30px 0px;
+  
+    /* Optional: Keep the corners slightly rounded */
+    border-radius: 5%;
+  
+    /* flip */
+    -webkit-transition: 1.5s ease-in-out;
+    transition: 1.5s ease-in-out;
+    transform-style: preserve-3d;
+  }
+  
+  .CA-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10%;
+    margin-top: 5%;
+    padding: 15px;
+    font-size: 30px;
+    background-color: rgb(251, 251, 251);
+    margin-top: 10px;
+  
+    /* Ensure the element is a square */
+    width: 500px;  /* Adjust this value as needed */
+    height: 500px; /* Same value as width */
+  
+    /* Box shadow for aesthetics */
+    box-shadow: rgba(0, 0, 0, 0.025) 0px 0px 0px 1px,
+                rgba(0, 0, 0, 0.05) 0px 1px 0px 0px,
+                rgba(0, 0, 0, 0.03) 0px 0px 8px 0px,
+                rgba(0, 0, 0, 0.1) 0px 20px 30px 0px;
+  
+    /* Optional: Keep the corners slightly rounded */
+    border-radius: 5%;
+  
+    /* flip */
+    -webkit-transition: 1.5s ease-in-out;
+    transition: 1.5s ease-in-out;
+    transform-style: preserve-3d;
+  }
+  
+  /* flip to back */
+  .FDP-container:hover {
+      -webkit-transform: rotateY(180deg);
+      transform: rotateY(180deg);
+  }
+  
+  .ETD-container:hover {
+      -webkit-transform: rotateY(180deg);
+      transform: rotateY(180deg);
+  }
+  
+  .AFF-container:hover {
+      -webkit-transform: rotateY(180deg);
+      transform: rotateY(180deg);
+  }
+  
+  .CA-container:hover {
+      -webkit-transform: rotateY(180deg);
+      transform: rotateY(180deg);
+  }
