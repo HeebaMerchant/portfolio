@@ -130,23 +130,23 @@ export default Portfolio;
       //   </section>
       // </main>
   
-        {/* Skills */}
-        {/* <section className="content-section" id="section-skills">
-          <h1>Skills</h1>
-          <h3>Information about my skills and expertise.</h3>
-        </section> */}
+        // {/* Skills */}
+        // {/* <section className="content-section" id="section-skills">
+        //   <h1>Skills</h1>
+        //   <h3>Information about my skills and expertise.</h3>
+        // </section> */}
 
-        {/* Resume */}
-        {/* <section className="content-section" id="section-resume">
-          <h1>Resume</h1>
-          <h3>Details about my professional background and experience.</h3>
-        </section> */}
+        // {/* Resume */}
+        // {/* <section className="content-section" id="section-resume">
+        //   <h1>Resume</h1>
+        //   <h3>Details about my professional background and experience.</h3>
+        // </section> */}
 
-        {/* Contact */}
-        {/* <section className="content-section" id="section-contact">
-          <h1>Contact</h1>
-          <h3>Feel free to get in touch with me!</h3>
-        </section> */}
+        // {/* Contact */}
+        // {/* <section className="content-section" id="section-contact">
+        //   <h1>Contact</h1>
+        //   <h3>Feel free to get in touch with me!</h3>
+        // </section> */}
 //       </main>
 //     </>
 //   );
