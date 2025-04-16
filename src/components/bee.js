@@ -236,6 +236,3 @@ window.addEventListener('load', () => {
     init();
     animate();
 });
-
-init();
-animate();
