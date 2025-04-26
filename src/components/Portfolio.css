@@ -16,9 +16,8 @@
 }
 
 body {
-    /* font-family: "CustomFont"; */
     background: #ffffff;
-    color: #FFFFFF;
+    color: #000000;
     overflow-x: hidden;
 }
 
@@ -41,7 +40,7 @@ nav {
     font-size: 20px;
     z-index: 20;
     background-color: rgba(247, 247, 247, 0.763);
-    border-radius: 25px 25px 25px 25px;
+    border-radius: 25px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -81,6 +80,7 @@ nav a:hover::after {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 #section-introduction .intro {
@@ -97,28 +97,13 @@ nav a:hover::after {
 }
 
 #section-introduction .title {
-    /* font-family: 'Protest Guerrilla', sans-serif; */
     font-weight: bold;
     font-size: 2rem;
     text-align: center;
     color: #BDBDBD;
     position: absolute;
     margin: 0;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-}
-
-#section-introduction .about {
-    /* font-family: 'Protest Guerrilla', sans-serif; */
-    font-weight: bold;
-    font-size: 2rem;
-    text-align: center;
-    color: #BDBDBD;
-    position: absolute;
-    margin: 0;
-    top: 50%;
+    top: 65%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
@@ -138,13 +123,13 @@ nav a:hover::after {
     left: 0;
     width: 100%;
     height: 100%;
-    transition: opacity 0.5s ease-out;
 }
 
 .gt-image-wrapper {
     width: 100%;
     height: 100%;
     position: relative;
+    overflow: hidden;
 }
 
 .gt-fullscreen-image {
@@ -152,9 +137,15 @@ nav a:hover::after {
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 0.3s ease-out;
 }
 
 .gt-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: flex-start;
     padding-top: 80px;
@@ -162,34 +153,33 @@ nav a:hover::after {
 }
 
 .gt-text-container {
-  position: absolute;
-  top: 80px;
-  right: 80px;
-  max-width: 600px;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(10px);
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: -10px -10px 10px 0 rgba(107, 107, 118, 0.2),
+    position: absolute;
+    top: 80px;
+    right: 80px;
+    max-width: 600px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: -10px -10px 10px 0 rgba(107, 107, 118, 0.2),
                 10px 10px 10px 0 rgba(107, 107, 118, 0.2);
 }
 
 .gt-text-container.visible {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .gt-overlay h2 {
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-shadow: none; /* Remove the text shadow */
-  text-align: left;
-  line-height: 1.6;
-  color: #ffffff; /* Dark text color for better contrast on white background */
-  margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: left;
+    line-height: 1.6;
+    color: #ffffff;
+    margin: 0;
 }
 
 .bee-corner {
@@ -199,258 +189,175 @@ nav a:hover::after {
     width: 150px;
     height: 150px;
     z-index: 10;
-    pointer-events: none; /* So it doesn't interfere with clicks */
+    pointer-events: none;
 }
 
+/* Projects Section */
+.projects-section {
+    min-height: 100vh;
+    padding: 8rem 2rem 2rem;
+    background: #ffffff;
+    position: relative;
+}
 
-/* Profile card */
-.profile-card {
+.projects-section h2 {
+    font-family: 'Protest Guerrilla', sans-serif;
+    font-size: 10rem;
+    margin: 0;
     text-align: center;
-    max-width: 400px;
+    color: #BDBDBD;
+    position: relative;
+    margin-bottom: 4rem;
+    animation: fadeIn 1s ease-out;
 }
 
-.profile-image {
-    width: 200px;
-    height: 200px;
-    margin: 0 auto 1.5rem;
-    overflow: hidden;
-    border-radius: 50%;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.profile-image img {
+/* Project containers layout */
+.project_container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 3rem;
+    width: 100%;
+    padding: 0 5%;
+}
+
+/* Project cards */
+.FDP-container,
+.ETD-container,
+.AFF-container,
+.CA-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    height: 400px;
+    padding: 15px;
+    font-size: 30px;
+    background-color: rgb(251, 251, 251);
+    box-shadow: rgba(0, 0, 0, 0.025) 0px 0px 0px 1px,
+                rgba(0, 0, 0, 0.05) 0px 1px 0px 0px,
+                rgba(0, 0, 0, 0.03) 0px 0px 8px 0px,
+                rgba(0, 0, 0, 0.1) 0px 20px 30px 0px;
+    border-radius: 20px;
+    transition: 1.5s ease-in-out;
+    transform-style: preserve-3d;
+    position: relative;
+    margin: 10px;
+}
+
+/* Card sides */
+.side {
+    position: absolute;
+    text-align: center;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    padding: 20px 50px;
+    color: #000000;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    border-radius: 20px;
 }
 
-.profile-info h2 {
-    margin-bottom: 0.5rem;
+.contents {
+    transform: translatez(70px) scale(0.8);
+    line-height: 1.5em;
 }
 
-.profile-title {
-    color: #ab64f3;
-    margin-bottom: 1rem;
-}
-
-.profile-quote {
-    font-style: italic;
-    color: #808080;
-}
-
-/* Project */
-
-/* Heading styles */
-.content-section h1 {
-    font-family: "CustomFont";
-    font-size: 4rem;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    margin-left: 10%;
-}
-
-  .content-section h3 {
-    font-size: 1rem;
-    margin-left: 10%;
-  }
-  
-  .project_container {
-    margin-top: 5%;
-    margin-bottom: 5%;
-    margin-left: 10%;
-    margin-right: 10%;
-    display: flex; /* Flexbox layout for horizontal alignment */
-    justify-content: space-between;
-    text-align: center;
-  }
-  
-  /* ALL CARD STYLING */
-  .side {
-      position: absolute;
-      text-align: center;
-      width: 100%;
-      height: 100%;
-      padding: 20px 50px;
-      color: #000000;
-      transform-style: preserve-3d;
-      backface-visibility: hidden;
-      border-radius: 20px;
-  }
-  
-  .contents {
-      transform: translatez(70px) scale(0.8);
-      line-height: 1.5em;
-  }
-  .contents h2 {
+.contents h2 {
     font-size: 2rem;
-  }
-  .contents p {
-      margin-top: 50px;
-      line-height: 2em;
-  }
-  .content h2:before {
-      content: "";
-      position: absolute;
-      bottom: -20px;
-      height: 3px;
-      background-color: rgb(255, 255, 255);
-      width: 70px;
-      left: 50%;
-      transform: translateX(-50%);
-  }
-  .front {
-      z-index: 2;
-      background-size: 100vh;
-      background-size: cover;
-      /* background-image: url(https://userscontent2.emaze.com/images/f9538183-0ff9-478f-b964-c8ab90421e3b/3d28e192fda5c17250f96a2779c84475.jpg); */
-  }
-  .back {
-      background-color: #333;
-      transform: rotateY(180deg);
-      z-index: 0;
-      padding-top: 10px;
-      /* background-image: url(https://userscontent2.emaze.com/images/f9538183-0ff9-478f-b964-c8ab90421e3b/3d28e192fda5c17250f96a2779c84475.jpg); */
-  }
-  
-  .back h1 {
-      margin: 0;
-  }
-  
-  /* box of flip cards */
-  .FDP-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 10%;
-    margin-top: 5%;
-    padding: 15px;
-    font-size: 30px;
-    background-color: rgb(255, 255, 255);
-    margin-top: 10px;
-  
-    /* Ensure the element is a square */
-    width: 500px;  /* Adjust this value as needed */
-    height: 500px; /* Same value as width */
-  
-    /* Box shadow for aesthetics */
-    box-shadow: rgba(0, 0, 0, 0.025) 0px 0px 0px 1px,
-                rgba(0, 0, 0, 0.05) 0px 1px 0px 0px,
-                rgba(0, 0, 0, 0.03) 0px 0px 8px 0px,
-                rgba(0, 0, 0, 0.1) 0px 20px 30px 0px;
-  
-    /* Optional: Keep the corners slightly rounded */
-    border-radius: 5%;
-    -webkit-transition: 1.5s ease-in-out;
-      transition: 1.5s ease-in-out;
-      transform-style: preserve-3d;
-  }
-  
-  .ETD-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 10%;
-    margin-top: 5%;
-    padding: 15px;
-    font-size: 30px;
-    background-color: rgb(251, 251, 251);
-    margin-top: 10px;
-  
-    /* Ensure the element is a square */
-    width: 500px;  /* Adjust this value as needed */
-    height: 500px; /* Same value as width */
-  
-    /* Box shadow for aesthetics */
-    box-shadow: rgba(0, 0, 0, 0.025) 0px 0px 0px 1px,
-                rgba(0, 0, 0, 0.05) 0px 1px 0px 0px,
-                rgba(0, 0, 0, 0.03) 0px 0px 8px 0px,
-                rgba(0, 0, 0, 0.1) 0px 20px 30px 0px;
-  
-    /* Optional: Keep the corners slightly rounded */
-    border-radius: 5%;
-  
-    /* flip */
-    -webkit-transition: 1.5s ease-in-out;
-      transition: 1.5s ease-in-out;
-      transform-style: preserve-3d;
-  }
-  
-  .AFF-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 10%;
-    margin-top: 5%;
-    padding: 15px;
-    font-size: 30px;
-    background-color: rgb(251, 251, 251);
-    margin-top: 10px;
-  
-    /* Ensure the element is a square */
-    width: 500px;  /* Adjust this value as needed */
-    height: 500px; /* Same value as width */
-  
-    /* Box shadow for aesthetics */
-    box-shadow: rgba(0, 0, 0, 0.025) 0px 0px 0px 1px,
-                rgba(0, 0, 0, 0.05) 0px 1px 0px 0px,
-                rgba(0, 0, 0, 0.03) 0px 0px 8px 0px,
-                rgba(0, 0, 0, 0.1) 0px 20px 30px 0px;
-  
-    /* Optional: Keep the corners slightly rounded */
-    border-radius: 5%;
-  
-    /* flip */
-    -webkit-transition: 1.5s ease-in-out;
-    transition: 1.5s ease-in-out;
-    transform-style: preserve-3d;
-  }
-  
-  .CA-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 10%;
-    margin-top: 5%;
-    padding: 15px;
-    font-size: 30px;
-    background-color: rgb(251, 251, 251);
-    margin-top: 10px;
-  
-    /* Ensure the element is a square */
-    width: 500px;  /* Adjust this value as needed */
-    height: 500px; /* Same value as width */
-  
-    /* Box shadow for aesthetics */
-    box-shadow: rgba(0, 0, 0, 0.025) 0px 0px 0px 1px,
-                rgba(0, 0, 0, 0.05) 0px 1px 0px 0px,
-                rgba(0, 0, 0, 0.03) 0px 0px 8px 0px,
-                rgba(0, 0, 0, 0.1) 0px 20px 30px 0px;
-  
-    /* Optional: Keep the corners slightly rounded */
-    border-radius: 5%;
-  
-    /* flip */
-    -webkit-transition: 1.5s ease-in-out;
-    transition: 1.5s ease-in-out;
-    transform-style: preserve-3d;
-  }
-  
-  /* flip to back */
-  .FDP-container:hover {
-      -webkit-transform: rotateY(180deg);
-      transform: rotateY(180deg);
-  }
-  
-  .ETD-container:hover {
-      -webkit-transform: rotateY(180deg);
-      transform: rotateY(180deg);
-  }
-  
-  .AFF-container:hover {
-      -webkit-transform: rotateY(180deg);
-      transform: rotateY(180deg);
-  }
-  
-  .CA-container:hover {
-      -webkit-transform: rotateY(180deg);
-      transform: rotateY(180deg);
-  }
+    margin-bottom: 20px;
+}
+
+.contents p {
+    margin-top: 20px;
+    line-height: 2em;
+}
+
+.front {
+    z-index: 2;
+    background-color: #f5f5f5;
+}
+
+.back {
+    background-color: #333;
+    transform: rotateY(180deg);
+    z-index: 0;
+    padding-top: 10px;
+    color: #ffffff;
+}
+
+/* Hover effects for flipping */
+.FDP-container:hover,
+.ETD-container:hover,
+.AFF-container:hover,
+.CA-container:hover {
+    transform: rotateY(180deg);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .project_container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .FDP-container,
+    .ETD-container,
+    .AFF-container,
+    .CA-container {
+        margin: 20px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    #section-introduction .intro {
+        font-size: 8rem;
+    }
+    
+    .projects-section h2 {
+        font-size: 6rem;
+    }
+    
+    .FDP-container,
+    .ETD-container,
+    .AFF-container,
+    .CA-container {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .gt-text-container {
+        top: 40px;
+        right: 20px;
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    #section-introduction .intro {
+        font-size: 5rem;
+    }
+    
+    .projects-section h2 {
+        font-size: 4rem;
+    }
+    
+    nav {
+        padding: 12px 20px;
+        max-width: 95%;
+    }
+    
+    nav a {
+        margin: 0 10px;
+    }
+}
