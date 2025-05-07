@@ -40,8 +40,8 @@ const cube = new THREE.Mesh(geometry, material);
 scene.add(cube);
 
 // Optional: Set a fixed rotation if desired
-// cube.rotation.x = Math.PI / 6; // 30 degrees in radians
-// cube.rotation.y = Math.PI / 4; // 45 degrees in radians
+cube.rotation.x = Math.PI / 6; // 30 degrees in radians
+cube.rotation.y = Math.PI / 4; // 45 degrees in radians
 
 // Add lights
 // Ambient light for general illumination
