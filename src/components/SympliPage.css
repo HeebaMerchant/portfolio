@@ -1,0 +1,267 @@
+/* SympliPage.css */
+.sympli-container {
+    min-height: 100vh;
+    background-color: #000;
+    color: #f3f4f6;
+  }
+  
+  .sympli-hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+  
+  .sympli-hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+    filter: brightness(0.5);
+  }
+  
+  .content-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 10;
+  }
+  
+  .hero-content {
+    max-width: 768px;
+  }
+  
+  .category-tag {
+    margin-bottom: 8px;
+    color: #f59e0b;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+  }
+  
+  .hero-title {
+    font-size: 60px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    letter-spacing: -0.025em;
+  }
+  
+  .hero-description {
+    font-size: 20px;
+    margin-bottom: 32px;
+    color: #d1d5db;
+    line-height: 1.75;
+  }
+  
+  .button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  
+  .primary-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background-color: #f59e0b;
+    color: black;
+    font-weight: 500;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+  
+  .primary-button:hover {
+    background-color: #fbbf24;
+  }
+  
+  .secondary-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background-color: transparent;
+    border: 1px solid #9ca3af;
+    color: #f3f4f6;
+    font-weight: 500;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+  
+  .secondary-button:hover {
+    background-color: rgba(31, 41, 55, 0.8);
+  }
+  
+  .scroll-indicator {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .scroll-text {
+    font-size: 14px;
+    color: #9ca3af;
+    margin-bottom: 8px;
+  }
+  
+  .scroll-line {
+    width: 2px;
+    height: 48px;
+    background: linear-gradient(to bottom, #7870FF, transparent);
+    border-radius: 9999px;
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+  
+  /* Section styling */
+  .section {
+    padding: 96px 0;
+  }
+  
+  .section-dark {
+    background-color: #111827;
+  }
+  
+  .section-gradient {
+    background: linear-gradient(to bottom, #000000, #262452);
+  }
+  
+  .section-title {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 48px;
+    letter-spacing: -0.025em;
+  }
+  
+  .section-text {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #d1d5db;
+    margin-bottom: 32px;
+  }
+  
+  /* Feature cards */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 32px;
+    margin-top: 64px;
+  }
+  
+  @media (min-width: 768px) {
+    .features-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  .feature-card {
+    background-color: #1f2937;
+    padding: 32px;
+    border-radius: 12px;
+  }
+  
+  .feature-icon-container {
+    width: 48px;
+    height: 48px;
+    background-color: rgba(245, 158, 11, 0.2);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+  
+  .feature-icon {
+    color: #f59e0b;
+  }
+  
+  .feature-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  
+  .feature-text {
+    color: #9ca3af;
+  }
+  
+  /* Tech stack grid */
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  
+  @media (min-width: 768px) {
+    .tech-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  .tech-item {
+    background-color: #1f2937;
+    padding: 16px;
+    border-radius: 8px;
+    text-align: center;
+    color: #d1d5db;
+  }
+  
+  /* Award box */
+  .award-box {
+    background-color: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 48px 0 64px;
+  }
+  
+  .award-title {
+    color: #fbbf24;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  
+  /* Future list */
+  .future-list {
+    list-style-type: disc;
+    padding-left: 24px;
+    margin-top: 16px;
+    color: #d1d5db;
+  }
+  
+  .future-list li {
+    margin-bottom: 16px;
+  }
+  
+  /* CTA section */
+  .cta-section {
+    padding: 64px 0;
+    text-align: center;
+  }
+  
+  .cta-title {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 32px;
+  }

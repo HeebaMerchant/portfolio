@@ -225,7 +225,9 @@ nav a:hover::after {
     background: #1e2125 !important;
     position: relative;
     overflow-x: hidden;
+    overflow: hidden;
     color: #E9DFCE;
+    z-index: 1;
 }
 
 .projects-section.dark-background {
@@ -504,5 +506,243 @@ nav a:hover::after {
     
     .project-title {
         font-size: 2rem;
+    }
+}
+
+.project-Scroll {
+    bottom: -1.2px;
+    right: -0.1%;
+    width: 12%;
+    height: 15%;
+    position: absolute;
+    transform: rotate(-0.1deg);
+    background-color: #1e2125;
+    /* background-color: #b8860b; */
+    border-bottom-right-radius: 100%; 
+    z-index: 1;
+}
+
+.animation-Scroll {
+    bottom: -2px;
+    right: 0%;
+    width: 10%;
+    height: 13%;
+    position: absolute;
+    justify-content: center;
+    background-color: #000000;
+    z-index: 0;
+}
+/* Skills Grid Styling with Top Fade Effect */
+
+/* Skills section styling */
+.skills-section {
+    padding: 100px 0% 150px;
+    background: #0e0e0e !important;
+    position: relative;
+    overflow-x: hidden;
+    color: #E9DFCE;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top-left-radius: 15%;
+}
+
+.skills-section .section-title,
+.skills-section .section-line {
+    position: relative;
+    z-index: 5; /* Higher z-index to ensure it appears above the fade */
+}
+
+/* Add top fade-in effect */
+.skills-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60%; /* Control the height of the fade */
+    background: linear-gradient(to bottom, 
+        #000000 0%, 
+        rgba(0, 0, 0, 0.9) 20%, 
+        rgba(0, 0, 0, 0.7) 40%, 
+        rgba(0, 0, 0, 0.4) 70%, 
+        transparent 100%);
+    pointer-events: none;
+    z-index: 2; /* Make sure it's above the grid */
+}
+
+.skills-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60%; /* Control the height of the fade */
+    background: linear-gradient(to top, 
+        #000000 0%, 
+        rgba(0, 0, 0, 0.9) 10%, 
+        rgba(0, 0, 0, 0.7) 20%, 
+        rgba(0, 0, 0, 0.5) 40%, 
+        rgba(0, 0, 0, 0.3) 50%, 
+        transparent 100%);
+    pointer-events: none;
+    z-index: 2; /* Make sure it's above the grid */
+}
+
+/* New container for side fades */
+.skills-container {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* Left side fade effect */
+.left-fade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%; /* Adjust width of fade */
+    height: 100%;
+    background: linear-gradient(to right, 
+        #000000 0%, 
+        rgba(0, 0, 0, 0.9) 10%, 
+        rgba(0, 0, 0, 0.7) 20%, 
+        rgba(0, 0, 0, 0.5) 40%, 
+        rgba(0, 0, 0, 0.3) 60%, 
+        transparent 100%);
+    pointer-events: none;
+    z-index: 3; /* Above grid but below headings */
+}
+
+/* Right side fade effect */
+.right-fade {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to left, 
+        #000000 0%, 
+        rgba(0, 0, 0, 0.9) 10%, 
+        rgba(0, 0, 0, 0.7) 20%, 
+        rgba(0, 0, 0, 0.5) 40%, 
+        rgba(0, 0, 0, 0.3) 60%,
+        transparent 100%);
+    pointer-events: none;
+    z-index: 3; 
+}
+
+/* Heading style */
+.skills-heading {
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 2;
+}
+
+.skills-heading p {
+    color: #f5f5f5;
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Grid Layout */
+.frameworks-grid {
+    display: grid;
+    grid-template-columns: repeat(16, 96px);
+    gap: 17px;
+    margin: 0 auto;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    /* Add padding for fade effect */
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+/* Framework Cards */
+.framework-card {
+    width: 96px;
+    height: 96px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    user-select: none;
+    position: relative;
+    border: 1px solid rgba(255,255,255,.08);
+    background: rgba(33, 33, 33, 0.3);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.4s ease;
+}
+
+/* Hover effect for the cards */
+.framework-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.08);
+    background: rgba(69, 69, 69, 0.3);
+}
+
+/* Framework icons */
+.framework-icon {
+    max-width: 85%;
+    max-height: 85%;
+    width: auto;
+    height: auto;
+    transition: transform 0.5s ease;
+}
+
+.framework-card:hover .framework-icon {
+    transform: scale(1.1);
+}
+
+/* Label on hover */
+.framework-name {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 8px 4px;
+    background: rgba(12, 12, 12, 0.7);
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: all 0.3s ease;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.framework-card:hover .framework-name {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .frameworks-grid {
+        grid-template-columns: repeat(8, 96px);
+    }
+}
+
+@media (max-width: 992px) {
+    .frameworks-grid {
+        grid-template-columns: repeat(6, 96px);
+    }
+}
+
+@media (max-width: 768px) {
+    .frameworks-grid {
+        grid-template-columns: repeat(4, 96px);
+    }
+}
+
+@media (max-width: 576px) {
+    .frameworks-grid {
+        grid-template-columns: repeat(3, 96px);
     }
 }

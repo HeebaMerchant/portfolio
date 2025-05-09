@@ -1,9 +1,13 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { Navigation } from './navBar';
+import initSkillsGrid from './SkillsGrid.jsx';
+import FrameworkCard from './FrameworkCard'; // Import the FrameworkCard component
 import './Portfolio.css';
 import './bee';
 import { Import } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
 
 const Portfolio = () => {
   const [introHeadingRef, introHeadingVisible] = useIntersectionObserver();
@@ -212,14 +216,15 @@ const Portfolio = () => {
         
         <div className="projects-container">
           {/* Project Grid with card layout and animations */}
+
           <div className="project-list">
             <div className="project-item">
               <div className="project-image-wrapper">
                 <img src="/project-healthcare.jpg" alt="Healthcare App" className="project-thumbnail" />
-                <a href="#" className="view-project">View Project <span className="arrow-icon">→</span></a>
+                <Link to="/sympli" className="view-project">View Project <span className="arrow-icon">→</span></Link>
               </div>
               <div className="project-info">
-                <h3>Healthcare App</h3>
+                <h3>Sympli</h3>
                 <p>Award-winning healthcare application that won 3rd place at Hacklytics 2025. Created an innovative solution for patient management with AI-powered diagnostics.</p>
                 <div className="tech-stack">React • TypeScript • Firebase</div>
               </div>
@@ -228,10 +233,10 @@ const Portfolio = () => {
             <div className="project-item">
               <div className="project-image-wrapper">
                 <img src="/project-website.jpg" alt="Website Redesign" className="project-thumbnail" />
-                <a href="#" className="view-project">View Project <span className="arrow-icon">→</span></a>
+                <Link to="fdp" className="view-project">View Project <span className="arrow-icon">→</span></Link>
               </div>
               <div className="project-info">
-                <h3>Website Redesign</h3>
+                <h3>Flight Delayed Prediction</h3>
                 <p>Dynamic website with modern UI elements and responsive design for optimal user experience across all devices.</p>
                 <div className="tech-stack">JavaScript • CSS3 • Figma</div>
               </div>
@@ -281,14 +286,77 @@ const Portfolio = () => {
             </a>
           </div>
         </div>
+
+        <div className="animation-Scroll"></div>
+        <div className="project-Scroll"></div>
       </section>
       
-      {/* Placeholder sections for other pages to demonstrate active navigation */}
-      <section id="section-skills" className="skills-section">
-        <h2 className="section-title">Skills</h2>
-        <div className="section-line"></div>
-        {/* Skills content goes here */}
-      </section>
+    {/* Skills*/}
+    <section id="section-skills" className="skills-section">
+      <h2 className="section-title">Skills</h2>
+      <div className="section-line"></div>
+      
+      <div className="skills-container">
+        <div className="left-fade"></div>
+        <div className="right-fade"></div>
+        <div className="skills-heading">
+          <p>
+            Powering your favorite frameworks and tools
+          </p>
+        </div>
+        
+        <div className="frameworks-grid">
+          {/* Row 1 - Empty cards */}
+          {Array(16).fill(null).map((_, index) => (
+            <FrameworkCard key={`empty-row1-${index}`} empty={true} />
+          ))}
+          
+          {/* Row 2 - First empty cells */}
+          <FrameworkCard key="empty-row2-1" empty={true} />
+          <FrameworkCard key="empty-row2-2" empty={true} />
+          <FrameworkCard key="empty-row2-3" empty={true} />
+          <FrameworkCard key="empty-row2-4" empty={true} />
+          
+          {/* Framework cards with icons */}
+          <FrameworkCard key="react" iconSrc="/logo/react.png" iconAlt="React" />
+          <FrameworkCard key="html" iconSrc="/logo/html.png" iconAlt="HTML" />
+          <FrameworkCard key="css" iconSrc="/logo/CSS.png" iconAlt="CSS" />
+          <FrameworkCard key="javascript" iconSrc="/logo/javascript.png" iconAlt="JavaScript" />
+          <FrameworkCard key="typescript" iconSrc="/logo/TypeScript.webp" iconAlt="TypeScript" />
+          <FrameworkCard key="tailwind" iconSrc="/logo/tailwind.png" iconAlt="Tailwind" />
+          <FrameworkCard key="shadcn" iconSrc="/logo/shadcn:ui.png" iconAlt="shadcn/ui" />
+          <FrameworkCard key="figma" iconSrc="/logo/figma.png" iconAlt="Figma" />
+          
+          {/* Row 3 - Empty cells first */}
+          {Array(8).fill(null).map((_, index) => (
+            <FrameworkCard key={`empty-row3-${index}`} empty={true} />
+          ))}
+          
+          <FrameworkCard key="assembly" iconSrc="/logo/assembly.png" iconAlt="Assembly" />
+          <FrameworkCard key="python" iconSrc="/logo/python.png" iconAlt="Python" />
+          <FrameworkCard key="nodejs" iconSrc="/logo/nodejs.png" iconAlt="Node.js" />
+          <FrameworkCard key="java" iconSrc="/logo/java.png" iconAlt="Java" />
+          <FrameworkCard key="c" iconSrc="/logo/c.png" iconAlt="C" />
+          <FrameworkCard key="django" iconSrc="/logo/django-Photoroom.png" iconAlt="Django" />
+          <FrameworkCard key="firebase" iconSrc="/logo/firebase.png" iconAlt="Firebase" />
+          <FrameworkCard key="gcp" iconSrc="/logo/gcp.png" iconAlt="Google Cloud" />
+          
+          {/* Row 4 - Empty cells first */}
+          {Array(11).fill(null).map((_, index) => (
+            <FrameworkCard key={`empty-row4-${index}`} empty={true} />
+          ))}
+          
+          {/* Final framework cards */}
+          <FrameworkCard key="pytorch" iconSrc="/logo/pytorch.png" iconAlt="Pytorch" />
+          <FrameworkCard key="numpy" iconSrc="/logo/numpy.png" iconAlt="Numpy"/>
+          
+          {/* Remaining empty cells */}
+          {Array(22).fill(null).map((_, index) => (
+            <FrameworkCard key={`empty-bottom-${index}`} empty={true} />
+          ))}
+        </div>
+      </div>
+    </section>
       
       <section id="section-resume" className="resume-section">
         <h2 className="section-title">Resume</h2>
