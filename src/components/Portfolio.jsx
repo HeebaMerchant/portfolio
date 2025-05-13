@@ -1,10 +1,12 @@
 import React, { useRef, useEffect, useState } from 'react';
+import Spline from '@splinetool/react-spline';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { Navigation } from './navBar';
 import initSkillsGrid from './SkillsGrid.jsx';
 import FrameworkCard from './FrameworkCard';
 import './Portfolio.css';
 import './bee';
+// import SplineScene from './ParticleSpiral.jsx';
 import { Import } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -187,7 +189,9 @@ const Portfolio = () => {
 
       {/* Introduction Section with enhanced animation */}
       <section id="section-introduction" className="intro-section">
-        <div className="intro-background"></div>
+        <div className="intro-background">
+          {/* <SplineScene/> */}
+        </div>
         <h1 className="intro animate-text" ref={introHeadingRef}> 
           Heeba<br/>Merchant 
         </h1>
@@ -247,9 +251,11 @@ const Portfolio = () => {
         
         <div className="projects-container">
           <div className="project-list">
+
+          {/* SYMPLI */}
             <div className="project-item">
               <div className="project-image-wrapper">
-                <img src="/project-healthcare.jpg" alt="Healthcare App" className="project-thumbnail" />
+                <img src="sympli/sympli final.jpeg" alt="Healthcare App" className="project-thumbnail" />
                 <Link to="/sympli" className="view-project">View Project <span className="arrow-icon">→</span></Link>
               </div>
               <div className="project-info">
@@ -259,9 +265,10 @@ const Portfolio = () => {
               </div>
             </div>
             
+            {/* FLIGHT DELAYED PREDICTION */}
             <div className="project-item">
               <div className="project-image-wrapper">
-                <img src="/project-website.jpg" alt="Website Redesign" className="project-thumbnail" />
+                <img src="fdp_Images/fdp-logo.jpg" alt="Website Redesign" className="project-thumbnail" />
                 <Link to="fdp" className="view-project">View Project <span className="arrow-icon">→</span></Link>
               </div>
               <div className="project-info">
@@ -271,9 +278,10 @@ const Portfolio = () => {
               </div>
             </div>
             
+            {/* EFFECTIVE TEAM DYANMICS */}
             <div className="project-item">
               <div className="project-image-wrapper">
-                <img src="/project-dataviz.jpg" alt="Data Visualization" className="project-thumbnail" />
+                <img src="etd/ETD-Logo.png" alt="Data Visualization" className="project-thumbnail" />
                 <Link to='/etd' className="view-project">View Project <span className="arrow-icon">→</span></Link>
               </div>
               <div className="project-info">
@@ -283,9 +291,10 @@ const Portfolio = () => {
               </div>
             </div>
             
+            {/* ATLANTA FOOD FINDER */}
             <div className="project-item">
               <div className="project-image-wrapper">
-                <img src="/project-mobile.jpg" alt="Mobile App" className="project-thumbnail" />
+                <img src="ATL Food Finder/Logo copy.webp" alt="Mobile App" className="project-thumbnail" />
                 <Link to='atlFoodFinder' className="view-project">View Project <span className="arrow-icon">→</span></Link>
               </div>
               <div className="project-info">
@@ -295,9 +304,10 @@ const Portfolio = () => {
               </div>
             </div>
             
+            {/* Email Phishing Detection */}
             <div className="project-item">
               <div className="project-image-wrapper">
-                <img src="/project-ai.jpg" alt="AI Project" className="project-thumbnail" />
+                <img src="email phishing/email-phishing-logo.jpg" alt="AI Project" className="project-thumbnail" />
                 <Link to='EmailPhishingDetection' className="view-project">View Project <span className="arrow-icon">→</span></Link>
               </div>
               <div className="project-info">
