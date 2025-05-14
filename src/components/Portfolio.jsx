@@ -255,7 +255,7 @@ const Portfolio = () => {
           {/* SYMPLI */}
             <div className="project-item">
               <div className="project-image-wrapper">
-                <img src="sympli/sympli final.jpeg" alt="Healthcare App" className="project-thumbnail" />
+                <img src="sympli final.jpeg" alt="Healthcare App" className="project-thumbnail" />
                 <Link to="/sympli" className="view-project">View Project <span className="arrow-icon">→</span></Link>
               </div>
               <div className="project-info">
@@ -281,7 +281,7 @@ const Portfolio = () => {
             {/* EFFECTIVE TEAM DYANMICS */}
             <div className="project-item">
               <div className="project-image-wrapper">
-                <img src="etd/ETD-Logo.png" alt="Data Visualization" className="project-thumbnail" />
+                <img src="/etd-final-logo.png" alt="Data Visualization" className="project-thumbnail" />
                 <Link to='/etd' className="view-project">View Project <span className="arrow-icon">→</span></Link>
               </div>
               <div className="project-info">
@@ -307,7 +307,7 @@ const Portfolio = () => {
             {/* Email Phishing Detection */}
             <div className="project-item">
               <div className="project-image-wrapper">
-                <img src="email phishing/email-phishing-logo.jpg" alt="AI Project" className="project-thumbnail" />
+                <img src="/email-phishing-logo.jpg" alt="AI Project" className="project-thumbnail" />
                 <Link to='EmailPhishingDetection' className="view-project">View Project <span className="arrow-icon">→</span></Link>
               </div>
               <div className="project-info">
