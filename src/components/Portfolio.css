@@ -221,12 +221,308 @@ nav a:hover::after {
 
 
 /* Georgia Tech section */
+.hero {
+    height: 120vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform-style: preserve-3d;
+}
+
+.hero-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-layer-1 {
+    /* background: url('/api/placeholder/1920/1080') center/cover; */
+    background: url(/public/georgia-tech-joins-cumu.png);
+    opacity: 0.1;
+    transform: translateZ(-1px) scale(1.5);
+}
+
+.hero-layer-2 {
+    background: radial-gradient(circle at center, transparent 0%, var(--bg-primary) 70%);
+    transform: translateZ(-0.5px) scale(1.25);
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 10;
+    max-width: 1200px;
+    padding: 0 40px;
+    transform: translateZ(0);
+}
+
+.hero h1 {
+    font-size: clamp(64px, 10vw, 144px);
+    font-weight: 700;
+    letter-spacing: -4px;
+    margin-bottom: 30px;
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--gt-gold) 50%, var(--text-primary) 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 3s ease infinite;
+}
+
+.hero .subtitle {
+    font-size: clamp(24px, 3vw, 40px);
+    color: var(--text-secondary);
+    margin-bottom: 50px;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+.hero-cta {
+    display: inline-block;
+    padding: 18px 50px;
+    background: transparent;
+    color: var(--gt-gold);
+    text-decoration: none;
+    border: 2px solid var(--gt-gold);
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.hero-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--gt-gold);
+    transition: width 0.3s ease;
+    z-index: -1;
+}
+
+.hero-cta:hover {
+    color: var(--bg-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(179, 163, 105, 0.3);
+}
+
+.hero-cta:hover::before {
+    width: 100%;
+}
+
+
+
+/* 3D Cards Section */
+.cards-section {
+    padding: 150px 60px;
+    position: relative;
+    background: var(--bg-secondary);
+    transform-style: preserve-3d;
+}
+
+.cards-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    perspective: 1000px;
+}
+
+.card-3d {
+    position: relative;
+    height: 500px;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+}
+
+.card-3d:hover {
+    transform: rotateY(10deg) rotateX(5deg) translateZ(20px);
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+    border-radius: 20px;
+    padding: 40px;
+    border: 1px solid rgba(179, 163, 105, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.card-face::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at top right, rgba(179, 163, 105, 0.1), transparent);
+    border-radius: 20px;
+    z-index: 0;
+}
+
+.card-content {
+    position: relative;
+    z-index: 1;
+}
+
+.card-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--gt-gold), var(--gt-navy));
+    border-radius: 20px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    transform: translateZ(20px);
+}
+
+.card-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+}
+
+.card-description {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+/* Floating Elements */
+.floating-element {
+    position: absolute;
+    opacity: 0.6;
+    animation: float 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.floating-circle {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(179, 163, 105, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(40px);
+}
+
+.floating-element-1 {
+    top: 10%;
+    left: -150px;
+    animation-delay: 0s;
+}
+
+.floating-element-2 {
+    bottom: 10%;
+    right: -150px;
+    animation-delay: 3s;
+}
+
+/* Timeline with 3D Effect */
+.timeline-section {
+    padding: 150px 60px;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-primary);
+}
+
+.timeline-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, transparent, var(--gt-gold), transparent);
+    transform: translateX(-50%) translateZ(-10px);
+}
+
+.timeline-item {
+    position: relative;
+    padding: 60px 0;
+    transform-style: preserve-3d;
+}
+
+.timeline-card {
+    width: 45%;
+    padding: 40px;
+    background: rgba(26, 26, 26, 0.8);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    border: 1px solid rgba(179, 163, 105, 0.2);
+    position: relative;
+    transition: all 0.4s ease;
+    transform: translateZ(0);
+}
+
+.timeline-item:nth-child(odd) .timeline-card {
+    margin-left: auto;
+    transform: translateX(50px);
+}
+
+.timeline-item:nth-child(even) .timeline-card {
+    transform: translateX(-50px);
+}
+
+.timeline-item.in-view .timeline-card {
+    transform: translateX(0) translateZ(20px);
+}
+
+.timeline-card:hover {
+    transform: translateY(-10px) translateZ(40px);
+    border-color: var(--gt-gold);
+    box-shadow: 0 20px 60px rgba(179, 163, 105, 0.2);
+}
+
+.timeline-dot {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 30px;
+    height: 30px;
+    background: var(--gt-gold);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) translateZ(30px);
+    box-shadow: 0 0 40px rgba(179, 163, 105, 0.6);
+}
+
+/* Georgia Tech section */
 .gt-section {
     height: 100vh;
     width: 100%;
     position: relative;
     overflow: hidden;
-    background-color: #1e2125; /* Consistent dark background */
+    background-color: #1e2125;
 }
 
 .gt-fullscreen-container {
@@ -293,19 +589,18 @@ nav a:hover::after {
     font-size: 1.15rem;
     font-weight: 400;
     line-height: 1.8;
-    color: #333; /* Dark text on light background for better contrast */
+    color: #333;
     margin: 0;
     letter-spacing: 0.01em;
 }
 
-/* Add a subtle title to the container */
 .gt-text-container::before {
     content: 'About Me';
     display: block;
     font-size: 1.4rem;
     font-weight: 600;
     margin-bottom: 1.2rem;
-    color: #333; /* Dark color for heading */
+    color: #333;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     padding-bottom: 0.8rem;
 }
@@ -664,7 +959,7 @@ nav a:hover::after {
     top: 0;
     left: 0;
     right: 0;
-    height: 60%; /* Control the height of the fade */
+    height: 50%; /* Control the height of the fade */
     background: linear-gradient(to bottom, 
         #000000 0%, 
         rgba(0, 0, 0, 0.9) 20%, 
@@ -681,7 +976,7 @@ nav a:hover::after {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 60%; /* Control the height of the fade */
+    height: 50%; /* Control the height of the fade */
     background: linear-gradient(to top, 
         #000000 0%, 
         rgba(0, 0, 0, 0.9) 10%, 
@@ -706,7 +1001,7 @@ nav a:hover::after {
     position: absolute;
     top: 0;
     left: 0;
-    width: 50%; /* Adjust width of fade */
+    width: 40%; /* Adjust width of fade */
     height: 100%;
     background: linear-gradient(to right, 
         #000000 0%, 
@@ -724,7 +1019,7 @@ nav a:hover::after {
     position: absolute;
     top: 0;
     right: 0;
-    width: 50%;
+    width: 40%;
     height: 100%;
     background: linear-gradient(to left, 
         #000000 0%, 
@@ -795,7 +1090,8 @@ nav a:hover::after {
     max-height: 85%;
     width: auto;
     height: auto;
-    transition: transform 0.5s ease;
+    transition: transform 0.3s ease-in;
+    filter: drop-shadow(0 0 3px rgba(184, 134, 11, 0.3));
 }
 
 .framework-card:hover .framework-icon {

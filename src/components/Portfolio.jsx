@@ -1,14 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react';
-import Spline from '@splinetool/react-spline';
-import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
-import { Navigation } from './navBar';
-import initSkillsGrid from './SkillsGrid.jsx';
-import FrameworkCard from './FrameworkCard';
-import './Portfolio.css';
-import './bee';
-// import SplineScene from './ParticleSpiral.jsx';
-import { Import } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import FrameworkCard from './FrameworkCard';
+import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
+import './Portfolio.css';
 
 const Portfolio = () => {
   const [introHeadingRef, introHeadingVisible] = useIntersectionObserver();
@@ -19,9 +13,9 @@ const Portfolio = () => {
   const [textVisible, setTextVisible] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [activePage, setActivePage] = useState('introduction'); // Track active section
+  const [activePage, setActivePage] = useState('introduction');
+  const [scrolled, setScrolled] = useState(false);
   
-  // Contact form state
   const [contactForm, setContactForm] = useState({
     name: '',
     email: '',
@@ -30,7 +24,7 @@ const Portfolio = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
-  
+
   // Track mouse position for parallax effects
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -46,15 +40,25 @@ const Portfolio = () => {
 
   useEffect(() => {
     const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+
+      // Parallax effect for background layers
+      const scrolledValue = window.pageYOffset;
+      const parallaxElements = document.querySelectorAll('.bg-layer, .hero-layer');
+      
+      parallaxElements.forEach((element, index) => {
+        const speed = 0.5 + (index * 0.1);
+        const yPos = -(scrolledValue * speed);
+        element.style.transform = `translateY(${yPos}px)`;
+      });
+
       if (gtSectionRef.current) {
         const sectionTop = gtSectionRef.current.getBoundingClientRect().top;
         const viewportHeight = window.innerHeight;
         
-        // Calculate scroll progress (0 to 1)
         const progress = Math.max(0, Math.min(1, 1 - (sectionTop / viewportHeight)));
         setScrollProgress(progress);
         
-        // Handle text visibility
         if (progress > 0.3 && imageLoaded) {
           setTimeout(() => {
             setTextVisible(true);
@@ -64,7 +68,6 @@ const Portfolio = () => {
         }
       }
 
-      // Check if projects section is in view
       if (projectsSectionRef.current) {
         const rect = projectsSectionRef.current.getBoundingClientRect();
         const isVisible = rect.top < window.innerHeight * 0.8;
@@ -73,24 +76,23 @@ const Portfolio = () => {
         }
       }
       
-      // Determine which section is currently in view to update active page
       updateActiveSection();
     };
 
-    // Function to determine active section based on scroll position
     const updateActiveSection = () => {
       const sections = [
         { id: 'introduction', element: document.getElementById('section-introduction') },
+        { id: 'home', element: document.getElementById('home') },
+        { id: 'work', element: document.getElementById('work') },
+        { id: 'education', element: document.getElementById('education') },
         { id: 'projects', element: document.getElementById('section-projects') },
         { id: 'skills', element: document.getElementById('section-skills') },
         { id: 'contact', element: document.getElementById('section-contact') }
       ];
       
-      // Find the section that is most visible in the viewport
       for (const section of sections) {
         if (section.element) {
           const rect = section.element.getBoundingClientRect();
-          // If section is mostly in view (top part visible)
           if (rect.top < window.innerHeight * 0.5 && rect.bottom > 0) {
             setActivePage(section.id);
             break;
@@ -100,25 +102,80 @@ const Portfolio = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Call on mount to set initial state
+    handleScroll();
     
     return () => window.removeEventListener('scroll', handleScroll);
   }, [imageLoaded]);
+
+  // Timeline animation observer
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.5,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        }
+      });
+    }, observerOptions);
+
+    const timelineElements = document.querySelectorAll('.timeline-item');
+    timelineElements.forEach(item => observer.observe(item));
+
+    return () => {
+      timelineElements.forEach(item => observer.unobserve(item));
+    };
+  }, []);
+
+  // Floating elements effect
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const mouseX = e.clientX / window.innerWidth;
+      const mouseY = e.clientY / window.innerHeight;
+      
+      document.querySelectorAll('.floating-element').forEach((element, index) => {
+        const speed = 0.02 + (index * 0.01);
+        const x = (mouseX - 0.5) * 100 * speed;
+        const y = (mouseY - 0.5) * 100 * speed;
+        
+        element.style.transform = `translate(${x}px, ${y}px)`;
+      });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  // 3D card tilt effect
+  const handleCardMouseMove = (e) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    
+    const tiltX = (y - 0.5) * 20;
+    const tiltY = (x - 0.5) * -20;
+    
+    card.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateZ(20px)`;
+  };
+
+  const handleCardMouseLeave = (e) => {
+    e.currentTarget.style.transform = 'rotateX(0) rotateY(0) translateZ(0)';
+  };
 
   const handleImageLoad = () => {
     console.log("Image loaded");
     setImageLoaded(true);
   };
 
-  // Simpler transform values based on scroll
-  const translateY = -scrollProgress * 3.5; // Move image up slightly as scroll down (percentage)
-  const scale = 1 + (scrollProgress * 0.12); // Slowly scale up as user scrolls
+  const translateY = -scrollProgress * 3.5;
+  const scale = 1 + (scrollProgress * 0.12);
+  const parallaxX = mousePosition.x * 5;
+  const parallaxY = mousePosition.y * 5;
 
-  // Mouse-based parallax effect
-  const parallaxX = mousePosition.x * 5; // Subtle horizontal movement
-  const parallaxY = mousePosition.y * 5; // Subtle vertical movement
-
-  // Contact form handlers
   const handleContactChange = (e) => {
     setContactForm({
       ...contactForm,
@@ -130,7 +187,6 @@ const Portfolio = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate API call - replace with your actual implementation
     try {
       await new Promise(resolve => setTimeout(resolve, 2000));
       
@@ -142,24 +198,15 @@ const Portfolio = () => {
     } finally {
       setIsSubmitting(false);
       
-      // Clear status after 5 seconds
       setTimeout(() => {
         setSubmitStatus(null);
       }, 5000);
     }
   };
 
-  useEffect(() => {
-    // Clean up when component unmounts
-    return () => {
-      document.body.style.background = "";
-      document.body.style.color = "";
-    };
-  }, []);
-
   return (
     <div className="portfolio-container">
-      {/* Navigation with active page indicator */}
+      {/* Navigation */}
       <nav className="glass-nav">
         <a 
           href="#section-introduction" 
@@ -187,10 +234,10 @@ const Portfolio = () => {
         </a>
       </nav>
 
-      {/* Introduction Section with enhanced animation */}
+
+      {/* Introduction Section */}
       <section id="section-introduction" className="intro-section">
         <div className="intro-background">
-          {/* <SplineScene/> */}
         </div>
         <h1 className="intro animate-text" ref={introHeadingRef}> 
           Heeba<br/>Merchant 
@@ -201,41 +248,102 @@ const Portfolio = () => {
           <div className="scroll-arrow"></div>
         </div>
       </section>
-      
-      {/* Georgia Tech Section with simplified parallax effect */}
-      <section ref={gtSectionRef} className="gt-section">
-        <div className="gt-fullscreen-container">
-          <div className="gt-image-wrapper">
-            <img 
-              src="/georgia-tech-joins-cumu.png" 
-              alt="Georgia Tech campus view" 
-              className="gt-fullscreen-image"
-              style={{
-                willChange: 'transform',
-                transform: `translate3d(${parallaxX}px, ${translateY}%, 0px) scale3d(${scale}, ${scale}, 1)`,
-                transformStyle: 'preserve-3d'
-              }}
-              onLoad={handleImageLoad}
-            />
-          </div>
-          <div className="gt-overlay">
-            <div 
-              className={`gt-text-container ${textVisible ? 'visible' : ''}`}
-            >
-              <h2>
-                I'm a passionate front-end developer specializing in creating seamless user interfaces 
-                that are both visually stunning and highly functional. As a Computer Science student at 
-                Georgia Tech with a focus on Intelligence and Media, I blend technical expertise with creative 
-                design principles. I've developed award-winning projects including a healthcare application 
-                that won 3rd place at Hacklytics 2025, and worked as a Software Engineer Intern redesigning 
-                websites with dynamic elements. My skills span React, TypeScript, Python, and various web 
-                technologies, allowing me to craft responsive layouts, ensure accessibility, and enhance user 
-                engagement through interactive design elements. My goal is to leverage these capabilities to 
-                contribute to innovative projects and help businesses achieve their digital goals through beautiful, 
-                user-friendly web experiences.
-              </h2>
+
+      <section className="hero" id="home">
+      <div className="hero-background" aria-hidden="true">
+        <div className="hero-layer hero-layer-1"></div>
+        <div className="hero-layer hero-layer-2"></div>
+      </div>
+      <div className="hero-content">
+        <h1>Georgia Tech Senior</h1>
+        <p className="subtitle">• COMPUTER SCIENCE • <br/> INTELLIGENCE & MEDIA</p>
+        <a href="#work" className="hero-cta" aria-label="Explore my journey">EXPLORE MY JOURNEY</a>
+      </div>
+      <div className="scroll-indicator" aria-hidden="true"></div>
+    </section>
+
+
+      {/* 3D Cards Section */}
+      <section className="cards-section" id="work">
+        <div className="floating-element floating-element-1">
+          <div className="floating-circle"></div>
+        </div>
+        <div className="floating-element floating-element-2">
+          <div className="floating-circle"></div>
+        </div>
+        
+        <div className="cards-container">
+          <div 
+            className="card-3d"
+            onMouseMove={handleCardMouseMove}
+            onMouseLeave={handleCardMouseLeave}
+          >
+            <div className="card-face">
+              <div className="card-content">
+                <div className="card-icon">🤖</div>
+                <h3 className="card-title">Intelligence Focus</h3>
+                <p className="card-description">Specializing in artificial intelligence and machine learning, working on cutting-edge projects that push the boundaries of intelligent systems.</p>
+              </div>
             </div>
-            <div id="bee-container" className="bee-corner"></div>
+          </div>
+          
+          <div 
+            className="card-3d"
+            onMouseMove={handleCardMouseMove}
+            onMouseLeave={handleCardMouseLeave}
+          >
+            <div className="card-face">
+              <div className="card-content">
+                <div className="card-icon">🎨</div>
+                <h3 className="card-title">Media Technologies</h3>
+                <p className="card-description">Exploring the intersection of computing and creative media, developing innovative solutions for digital content creation and interaction.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div 
+            className="card-3d"
+            onMouseMove={handleCardMouseMove}
+            onMouseLeave={handleCardMouseLeave}
+          >
+            <div className="card-face">
+              <div className="card-content">
+                <div className="card-icon">🚀</div>
+                <h3 className="card-title">Future Goals</h3>
+                <p className="card-description">Preparing for Master's in Computer Science to deepen expertise in emerging technologies and contribute to groundbreaking research.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+            {/* Timeline Section */}
+            <section className="timeline-section" id="education">
+        <div className="timeline-container">
+          <div className="timeline-line"></div>
+          
+          <div className="timeline-item">
+            <div className="timeline-dot"></div>
+            <div className="timeline-card">
+              <h3>Senior Year at Georgia Tech</h3>
+              <p>Currently completing my final year, focusing on advanced coursework in AI and machine learning. Leading multiple projects that combine intelligence with practical applications.</p>
+            </div>
+          </div>
+          
+          <div className="timeline-item">
+            <div className="timeline-dot"></div>
+            <div className="timeline-card">
+              <h3>Computer Science Major</h3>
+              <p>Specializing in Intelligence and Media concentration, developing expertise in neural networks, computer vision, and natural language processing.</p>
+            </div>
+          </div>
+          
+          <div className="timeline-item">
+            <div className="timeline-dot"></div>
+            <div className="timeline-card">
+              <h3>Master's Program (Coming Soon)</h3>
+              <p>Accepted into Georgia Tech's Master's in Computer Science program, planning to focus on advanced AI research and innovative technology development.</p>
+            </div>
           </div>
         </div>
       </section>
