@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './EmailPhishingDetection.css';
+import BackButton from './BackButton';
+import ProjectNavBar from './ProjectNavBar';
 
 const EmailPhishingDetection = () => {
   const [activeSection, setActiveSection] = useState('overview');
@@ -13,6 +15,14 @@ const EmailPhishingDetection = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Define navigation links for this project
+  const navLinks = [
+    { id: 'overview', label: 'Overview' },
+    { id: 'problem', label: 'Problem' },
+    { id: 'solution', label: 'Solution' },
+    { id: 'results', label: 'Results' }
+  ];
 
   const models = {
     nb: { name: 'Naive Bayes', accuracy: '98.51%', f1: '0.98', auc: '0.99' },
@@ -29,24 +39,17 @@ const EmailPhishingDetection = () => {
 
   return (
     <div className="epd-container">
+      <BackButton />
+      
       {/* Navigation */}
-      <nav className={`epd-nav ${scrollY > 50 ? 'scrolled' : ''}`}>
-        <div className="nav-content">
-          <div className="nav-brand">
-            <span className="nav-icon">🛡️</span>
-            <span className="nav-title">Phishing Detection ML</span>
-          </div>
-          <div className="nav-links">
-            <a href="#overview" className={activeSection === 'overview' ? 'active' : ''}>Overview</a>
-            <a href="#problem" className={activeSection === 'problem' ? 'active' : ''}>Problem</a>
-            <a href="#solution" className={activeSection === 'solution' ? 'active' : ''}>Solution</a>
-            <a href="#results" className={activeSection === 'results' ? 'active' : ''}>Results</a>
-          </div>
-        </div>
-      </nav>
+      <ProjectNavBar 
+        title="Phishing Detection ML"
+        links={navLinks}
+        theme="epd"
+      />
 
       {/* Hero Section */}
-      <section className="hero-section">
+      <section className="hero-section" id="overview">
         <div className="hero-bg-animation">
           <div className="cyber-grid"></div>
           <div className="floating-element email-1">@</div>
@@ -516,23 +519,53 @@ const EmailPhishingDetection = () => {
             <div className="roadmap-items">
               <div className="roadmap-item">
                 <div className="roadmap-phase">Phase 1</div>
-                <h4>Model Improvements</h4>
-                <p>Address SVM recall issues, test on imbalanced datasets</p>
+                <h4>Research & Optimization</h4>
+                <ul className="roadmap-list">
+                  <li>Implement SMOTE for better class balance</li>
+                  <li>Test RBF kernel for SVM to improve recall</li>
+                  <li>Optimize Random Forest hyperparameters</li>
+                  <li>Benchmark against 20k imbalanced dataset</li>
+                </ul>
               </div>
               <div className="roadmap-item">
                 <div className="roadmap-phase">Phase 2</div>
-                <h4>API Development</h4>
-                <p>Build REST API with authentication and rate limiting</p>
+                <h4>Feature Engineering</h4>
+                <ul className="roadmap-list">
+                  <li>Add sender reputation analysis module</li>
+                  <li>Implement attachment scanning & risk assessment</li>
+                  <li>Develop header anomaly detection algorithm</li>
+                  <li>Create contextual keyword analysis with BERT</li>
+                </ul>
               </div>
               <div className="roadmap-item">
                 <div className="roadmap-phase">Phase 3</div>
-                <h4>Integration Testing</h4>
-                <p>Test with email clients and security platforms</p>
+                <h4>API Development</h4>
+                <ul className="roadmap-list">
+                  <li>Build Flask/FastAPI REST service with JWT auth</li>
+                  <li>Implement model pipeline with scikit-learn</li>
+                  <li>Add real-time preprocessing microservice</li>
+                  <li>Set up Docker containers for deployment</li>
+                </ul>
               </div>
               <div className="roadmap-item">
                 <div className="roadmap-phase">Phase 4</div>
-                <h4>Production Deployment</h4>
-                <p>Deploy as cloud-based email security service</p>
+                <h4>Integration</h4>
+                <ul className="roadmap-list">
+                  <li>Develop Outlook/Gmail add-ins for direct scanning</li>
+                  <li>Create browser extension for webmail protection</li>
+                  <li>Build SMTP proxy for server-side filtering</li>
+                  <li>Implement logging and analytics dashboard</li>
+                </ul>
+              </div>
+              <div className="roadmap-item">
+                <div className="roadmap-phase">Phase 5</div>
+                <h4>Deployment & Monitoring</h4>
+                <ul className="roadmap-list">
+                  <li>Deploy to AWS/GCP with auto-scaling</li>
+                  <li>Set up CI/CD pipeline with GitHub Actions</li>
+                  <li>Implement A/B testing framework for model updates</li>
+                  <li>Create feedback loop for continuous improvement</li>
+                </ul>
               </div>
             </div>
           </div>

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './ObjectModeling.css';
 import { Play, Pause, Box, Camera, Lightbulb, Layers, Code, Timer } from 'lucide-react';
+import BackButton from './BackButton';
+import ProjectNavBar from './ProjectNavBar';
 
 const MediaProjectDemo = () => {
   const [activeTab, setActiveTab] = useState('part1');
@@ -22,6 +24,14 @@ const MediaProjectDemo = () => {
     }
     return () => clearInterval(interval);
   }, [isPlaying]);
+  
+  // Define navigation links for this project
+  const navLinks = [
+    { id: 'intro', label: 'Overview' },
+    { id: 'requirements', label: 'Requirements' },
+    { id: 'project', label: 'Project Details' },
+    { id: 'timeline', label: 'Timeline' }
+  ];
 
   const requirements = {
     part1: [
@@ -40,8 +50,17 @@ const MediaProjectDemo = () => {
 
   return (
     <div className="min-h-screen bg-black text-white font-sans">
+      <BackButton />
+      
+      {/* Navigation */}
+      <ProjectNavBar 
+        title="3D Animation Project"
+        links={navLinks}
+        theme="media"
+      />
+      
       {/* Hero Section */}
-      <header className="relative overflow-hidden">
+      <header className="relative overflow-hidden" id="intro">
         <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 to-black/50" />
         <div className="relative container mx-auto px-6 py-20">
           <h1 className="text-5xl md:text-7xl font-bold text-center mb-6 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
@@ -97,7 +116,7 @@ const MediaProjectDemo = () => {
         </div>
 
         {/* Content */}
-        <div className="grid lg:grid-cols-2 gap-12 mb-20">
+        <div className="grid lg:grid-cols-2 gap-12 mb-20" id="requirements">
           {/* Visual Demo */}
           <div className="relative">
             <div className="aspect-video bg-gray-900 rounded-2xl overflow-hidden shadow-2xl relative">
@@ -175,7 +194,7 @@ const MediaProjectDemo = () => {
         </div>
 
         {/* Project Overview */}
-        <div className="bg-gray-900 rounded-2xl p-6 mb-20">
+        <div className="bg-gray-900 rounded-2xl p-6 mb-20" id="project">
           <h3 className="text-2xl font-bold mb-6">What You Need to Do</h3>
           
           {activeTab === 'part1' ? (
@@ -248,7 +267,7 @@ const MediaProjectDemo = () => {
         </div>
 
         {/* Timeline */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-20" id="timeline">
           <h3 className="text-3xl font-bold mb-8">Project Timeline</h3>
           <div className="flex justify-center items-center space-x-8">
             <div className="text-center">

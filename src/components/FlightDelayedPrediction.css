@@ -590,3 +590,316 @@
       justify-content: center;
     }
   }
+  
+  /* Team Structure Cards */
+  .fdp-team-structure {
+    margin-bottom: 3rem;
+  }
+  
+  .fdp-subsection-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #38bdf8;
+  }
+  
+  .fdp-team-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  @media (min-width: 768px) {
+    .fdp-team-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  .fdp-team-card {
+    background-color: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  .fdp-team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(56, 189, 248, 0.15);
+    border-color: rgba(56, 189, 248, 0.4);
+  }
+  
+  .fdp-team-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: #f8fafc;
+  }
+  
+  .fdp-team-description {
+    font-size: 0.875rem;
+    color: #cbd5e1;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+  
+  .fdp-team-members {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(56, 189, 248, 0.15);
+  }
+  
+  /* ML Approach */
+  .fdp-ml-approach {
+    margin-bottom: 3rem;
+  }
+  
+  .fdp-approach-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  @media (min-width: 640px) {
+    .fdp-approach-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .fdp-approach-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  .fdp-approach-card {
+    background-color: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    transition: all 0.3s ease;
+  }
+  
+  .fdp-approach-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px -4px rgba(56, 189, 248, 0.15);
+    border-color: rgba(56, 189, 248, 0.4);
+  }
+  
+  .fdp-approach-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: #f8fafc;
+  }
+  
+  .fdp-approach-text {
+    font-size: 0.875rem;
+    color: #cbd5e1;
+    line-height: 1.5;
+  }
+  
+  /* Features Importance */
+  .fdp-features-importance {
+    background-color: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+  }
+  
+  .fdp-features-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #f8fafc;
+  }
+  
+  .fdp-features-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  
+  @media (min-width: 768px) {
+    .fdp-features-list {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  .fdp-feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .fdp-feature-rank {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    background-color: rgba(56, 189, 248, 0.1);
+    border-radius: 50%;
+    color: #38bdf8;
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+  
+  .fdp-feature-name {
+    font-size: 0.875rem;
+    color: #cbd5e1;
+  }
+  
+  /* UI Features */
+  .fdp-ui-features {
+    margin-top: 3rem;
+  }
+  
+  .fdp-ui-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  @media (min-width: 640px) {
+    .fdp-ui-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .fdp-ui-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  .fdp-ui-card {
+    background-color: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    transition: all 0.3s ease;
+  }
+  
+  .fdp-ui-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px -4px rgba(56, 189, 248, 0.15);
+    border-color: rgba(56, 189, 248, 0.4);
+  }
+  
+  .fdp-ui-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: #f8fafc;
+  }
+  
+  .fdp-ui-text {
+    font-size: 0.875rem;
+    color: #cbd5e1;
+    line-height: 1.5;
+  }
+  
+  /* Challenges Section */
+  .fdp-challenges-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  @media (min-width: 768px) {
+    .fdp-challenges-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  .fdp-challenge-card {
+    background-color: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .fdp-challenge-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px -5px rgba(56, 189, 248, 0.15);
+    border-color: rgba(56, 189, 248, 0.4);
+  }
+  
+  .fdp-challenge-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .fdp-challenge-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #f8fafc;
+  }
+  
+  .fdp-challenge-text {
+    font-size: 0.875rem;
+    color: #cbd5e1;
+    line-height: 1.6;
+    flex-grow: 1;
+  }
+  
+  /* Timeline */
+  .fdp-timeline {
+    margin-bottom: 3rem;
+  }
+  
+  .fdp-timeline-phases {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  @media (min-width: 768px) {
+    .fdp-timeline-phases {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  .fdp-timeline-phase {
+    background-color: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+  }
+  
+  .fdp-phase-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+    color: #38bdf8;
+  }
+  
+  .fdp-phase-list {
+    list-style-type: none;
+  }
+  
+  .fdp-phase-list li {
+    padding: 0.5rem 0;
+    color: #cbd5e1;
+    font-size: 0.875rem;
+    position: relative;
+    padding-left: 1.5rem;
+  }
+  
+  .fdp-phase-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #38bdf8;
+  }

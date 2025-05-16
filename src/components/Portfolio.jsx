@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import FrameworkCard from './FrameworkCard';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
@@ -8,6 +8,8 @@ const Portfolio = () => {
   const [introHeadingRef, introHeadingVisible] = useIntersectionObserver();
   const gtSectionRef = useRef(null);
   const projectsSectionRef = useRef(null);
+  const heroContentRef = useRef(null);
+  const gtLogoRef = useRef(null);
   const [projectsVisible, setProjectsVisible] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [textVisible, setTextVisible] = useState(false);
@@ -24,6 +26,9 @@ const Portfolio = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+  const timelineRef = useRef(null);
+  const zoomContainerRef = useRef(null);
+  const zoomTargetRef = useRef(null);
 
   // Track mouse position for parallax effects
   useEffect(() => {
@@ -32,22 +37,63 @@ const Portfolio = () => {
         x: e.clientX / window.innerWidth - 0.5,
         y: e.clientY / window.innerHeight - 0.5
       });
+      
+      // Add smooth parallax for hero section based on mouse position
+      const heroLayers = document.querySelectorAll('.depth-layer');
+      if (heroLayers.length) {
+        heroLayers.forEach((layer, index) => {
+          const depth = (index + 1) * 5;
+          const moveX = mousePosition.x * depth;
+          const moveY = mousePosition.y * depth;
+          layer.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
+      }
     };
     
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  }, [mousePosition]);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+
+      // Enhanced scroll animations
+      const scrollY = window.scrollY;
+      
+      // Apply scroll effects to hero section
+      if (gtSectionRef.current) {
+        const heroRect = gtSectionRef.current.getBoundingClientRect();
+        const heroHeight = heroRect.height;
+        const scrollPercentage = Math.min(1, Math.max(0, -heroRect.top / heroHeight));
+        
+        // Apply transformations based on scroll position
+        if (heroContentRef.current) {
+          heroContentRef.current.style.transform = `translateY(${scrollPercentage * 50}px)`;
+        }
+        
+        if (gtLogoRef.current) {
+          gtLogoRef.current.style.transform = `rotate(-10deg) translateY(${scrollPercentage * 100}px)`;
+        }
+      }
+
+      // Check for elements with scroll reveal
+      const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+      scrollRevealElements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = elementTop < window.innerHeight * 0.85;
+        
+        if (elementVisible) {
+          element.classList.add('visible');
+        }
+      });
 
       // Parallax effect for background layers
       const scrolledValue = window.pageYOffset;
       const parallaxElements = document.querySelectorAll('.bg-layer, .hero-layer');
       
       parallaxElements.forEach((element, index) => {
-        const speed = 0.5 + (index * 0.1);
+        const speed = 0.3 + (index * 0.05);
         const yPos = -(scrolledValue * speed);
         element.style.transform = `translateY(${yPos}px)`;
       });
@@ -82,8 +128,6 @@ const Portfolio = () => {
     const updateActiveSection = () => {
       const sections = [
         { id: 'introduction', element: document.getElementById('section-introduction') },
-        { id: 'home', element: document.getElementById('home') },
-        { id: 'work', element: document.getElementById('work') },
         { id: 'education', element: document.getElementById('education') },
         { id: 'projects', element: document.getElementById('section-projects') },
         { id: 'skills', element: document.getElementById('section-skills') },
@@ -107,27 +151,25 @@ const Portfolio = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [imageLoaded]);
 
-  // Timeline animation observer
+  // Add animation to timeline elements when they come into view
   useEffect(() => {
-    const observerOptions = {
-      threshold: 0.5,
-      rootMargin: '0px 0px -100px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
+    const handleTimelineAnimation = () => {
+      const timelineElements = document.querySelectorAll('.timeline-content.scroll-reveal');
+      
+      timelineElements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = elementTop < window.innerHeight * 0.8;
+        
+        if (elementVisible) {
+          element.classList.add('visible');
         }
       });
-    }, observerOptions);
-
-    const timelineElements = document.querySelectorAll('.timeline-item');
-    timelineElements.forEach(item => observer.observe(item));
-
-    return () => {
-      timelineElements.forEach(item => observer.unobserve(item));
     };
+    
+    window.addEventListener('scroll', handleTimelineAnimation);
+    handleTimelineAnimation(); // Initial check
+    
+    return () => window.removeEventListener('scroll', handleTimelineAnimation);
   }, []);
 
   // Floating elements effect
@@ -149,21 +191,45 @@ const Portfolio = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // 3D card tilt effect
+  // Enhanced 3D card tilt effect
   const handleCardMouseMove = (e) => {
     const card = e.currentTarget;
     const rect = card.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width;
     const y = (e.clientY - rect.top) / rect.height;
     
-    const tiltX = (y - 0.5) * 20;
-    const tiltY = (x - 0.5) * -20;
+    const tiltX = (y - 0.5) * 15; // Reduced tilt for smoother effect
+    const tiltY = (x - 0.5) * -15;
+    const intensity = 20; // Parallax intensity
     
-    card.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateZ(20px)`;
+    const content = card.querySelector('.card-content');
+    const icon = card.querySelector('.card-icon');
+    const title = card.querySelector('.card-title');
+    const description = card.querySelector('.card-description');
+    
+    card.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateZ(20px) scale(1.02)`;
+    
+    // Parallax effect for inner elements
+    if (content) content.style.transform = `translateZ(30px)`;
+    if (icon) icon.style.transform = `translateZ(40px) translateX(${(x - 0.5) * -intensity}px) translateY(${(y - 0.5) * -intensity}px)`;
+    if (title) title.style.transform = `translateZ(25px) translateX(${(x - 0.5) * -intensity * 0.5}px)`;
+    if (description) description.style.transform = `translateZ(10px)`;
   };
 
   const handleCardMouseLeave = (e) => {
-    e.currentTarget.style.transform = 'rotateX(0) rotateY(0) translateZ(0)';
+    const card = e.currentTarget;
+    const content = card.querySelector('.card-content');
+    const icon = card.querySelector('.card-icon');
+    const title = card.querySelector('.card-title');
+    const description = card.querySelector('.card-description');
+    
+    card.style.transform = 'rotateX(0) rotateY(0) translateZ(0) scale(1)';
+    
+    // Reset inner elements
+    if (content) content.style.transform = 'translateZ(10px)';
+    if (icon) icon.style.transform = 'translateZ(20px)';
+    if (title) title.style.transform = 'translateZ(0)';
+    if (description) description.style.transform = 'translateZ(0)';
   };
 
   const handleImageLoad = () => {
@@ -215,6 +281,12 @@ const Portfolio = () => {
           Introduction
         </a>
         <a 
+          href="#section-education" 
+          className={`nav-link ${activePage === 'education' ? 'active' : ''}`}
+        >
+          Education
+        </a>
+        <a 
           href="#section-projects" 
           className={`nav-link ${activePage === 'projects' ? 'active' : ''}`}
         >
@@ -249,30 +321,43 @@ const Portfolio = () => {
         </div>
       </section>
 
-      <section className="hero" id="home">
-      <div className="hero-background" aria-hidden="true">
-        <div className="hero-layer hero-layer-1"></div>
-        <div className="hero-layer hero-layer-2"></div>
-      </div>
-      <div className="hero-content">
-        <h1>Georgia Tech Senior</h1>
-        <p className="subtitle">• COMPUTER SCIENCE • <br/> INTELLIGENCE & MEDIA</p>
-        <a href="#work" className="hero-cta" aria-label="Explore my journey">EXPLORE MY JOURNEY</a>
-      </div>
-      <div className="scroll-indicator" aria-hidden="true"></div>
-    </section>
+      {/* Hero Section with depth layers and advanced scroll effects */}
+      <section className="hero" id="#section-education" ref={gtSectionRef}>
+        <div className="depth-layer depth-layer-1"></div>
+        <div className="depth-layer depth-layer-2"></div>
+        <div className="depth-layer depth-layer-3"></div>
+        
+        <div className="gt-emblem parallax-element" aria-hidden="true">GT</div>
+        <img 
+          src="/georgia-tech-logo.png" 
+          alt="Georgia Tech" 
+          className="gt-logo parallax-element" 
+          aria-hidden="true"
+          ref={gtLogoRef}
+        />
+        <div className="particles">
+          <div className="particle parallax-element"></div>
+          <div className="particle parallax-element"></div>
+          <div className="particle parallax-element"></div>
+          <div className="particle parallax-element"></div>
+          <div className="particle parallax-element"></div>
+        </div>
+        <div className="hero-content" ref={heroContentRef}>
+          <h1>Georgia Tech <span className="highlight">Senior</span></h1>
+          <p className="subtitle">COMPUTER SCIENCE <br/> INTELLIGENCE • MEDIA</p>
+          <a href="#work" className="hero-cta" aria-label="Explore my journey">EXPLORE MY JOURNEY</a>
+        </div>
+        <div className="diagonal-divider" aria-hidden="true"></div>
+      </section>
 
 
       {/* 3D Cards Section */}
       <section className="cards-section" id="work">
-        <div className="floating-element floating-element-1">
-          <div className="floating-circle"></div>
-        </div>
-        <div className="floating-element floating-element-2">
+        <div className="floating-element">
           <div className="floating-circle"></div>
         </div>
         
-        <div className="cards-container">
+        <div className="cards-container scroll-reveal">
           <div 
             className="card-3d"
             onMouseMove={handleCardMouseMove}
@@ -317,32 +402,70 @@ const Portfolio = () => {
         </div>
       </section>
 
-            {/* Timeline Section */}
-            <section className="timeline-section" id="education">
+      {/* Timeline Section - Redesigned with single background */}
+      <section className="timeline-section" id="education" ref={timelineRef}>
         <div className="timeline-container">
+          {/* Single background image for the entire timeline */}
+          <div className="timeline-background" style={{
+            backgroundImage: 'url(/georgia-tech-joins-cumu.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center center',
+            width: '100vw',
+            height: '100vh',
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            filter: 'brightness(0.7)'
+          }}></div>
+          
+          {/* Vertical timeline line */}
           <div className="timeline-line"></div>
           
-          <div className="timeline-item">
-            <div className="timeline-dot"></div>
-            <div className="timeline-card">
-              <h3>Senior Year at Georgia Tech</h3>
-              <p>Currently completing my final year, focusing on advanced coursework in AI and machine learning. Leading multiple projects that combine intelligence with practical applications.</p>
+          {/* Timeline events */}
+          <div className="timeline-events">
+            {/* Timeline Event 1 */}
+            <div className="timeline-event">
+              <div className="timeline-year">2020</div>
+              <div className="timeline-content scroll-reveal">
+                <h2 className="timeline-heading">Beginning at Georgia Tech</h2>
+                <p className="timeline-description">Started my journey at Georgia Tech, diving into foundational computer science concepts and exploring the rich tech ecosystem. Earned Dean's List recognition in July 2021 and December 2021 for academic excellence.</p>
+                
+                <div className="timeline-details">
+                  <span className="timeline-detail">Dean's List Jul & Dec 2021</span>
+                  <span className="timeline-detail">ACM Member</span>
+                  <span className="timeline-detail">Foundations</span>
+                </div>
+              </div>
             </div>
-          </div>
-          
-          <div className="timeline-item">
-            <div className="timeline-dot"></div>
-            <div className="timeline-card">
-              <h3>Computer Science Major</h3>
-              <p>Specializing in Intelligence and Media concentration, developing expertise in neural networks, computer vision, and natural language processing.</p>
+
+            {/* Timeline Event 2 */}
+            <div className="timeline-event">
+              <div className="timeline-year">2022</div>
+              <div className="timeline-content scroll-reveal">
+                <h2 className="timeline-heading">Intelligence Specialization</h2>
+                <p className="timeline-description">Focused on AI and machine learning specialization. Achieved President's List in May and December 2022, and Dean's List in May 2023. Won 2nd place at HackGT for an innovative AI-powered healthcare solution.</p>
+                
+                <div className="timeline-details">
+                  <span className="timeline-detail">President's List 2022</span>
+                  <span className="timeline-detail">Dean's List May 2023</span>
+                  <span className="timeline-detail">HackGT 2nd Place</span>
+                </div>
+              </div>
             </div>
-          </div>
-          
-          <div className="timeline-item">
-            <div className="timeline-dot"></div>
-            <div className="timeline-card">
-              <h3>Master's Program (Coming Soon)</h3>
-              <p>Accepted into Georgia Tech's Master's in Computer Science program, planning to focus on advanced AI research and innovative technology development.</p>
+
+            {/* Timeline Event 3 */}
+            <div className="timeline-event">
+              <div className="timeline-year">2024</div>
+              <div className="timeline-content scroll-reveal">
+                <h2 className="timeline-heading">Senior Year & Beyond</h2>
+                <p className="timeline-description">Completing my final year with advanced projects in AI. Earned Dean's List Fall 2024 and Faculty Honors Spring 2025. Won 3rd place at Hacklytics 2025 for Sympli healthcare app, and served as a teaching assistant for the Machine Learning course.</p>
+                
+                <div className="timeline-details">
+                  <span className="timeline-detail">Dean's List Fall 2024</span>
+                  <span className="timeline-detail">Faculty Honors Spring 2025</span>
+                  <span className="timeline-detail">Hacklytics Winner</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -364,7 +487,7 @@ const Portfolio = () => {
             <div className="project-item">
               <div className="project-image-wrapper">
                 <img src="sympli final.jpeg" alt="Healthcare App" className="project-thumbnail" />
-                <Link to="/sympli" className="view-project">View Project <span className="arrow-icon">→</span></Link>
+                <Link to="/sympli" className="view-project" onClick={() => window.scrollTo(0, 0)}>View Project <span className="arrow-icon">→</span></Link>
               </div>
               <div className="project-info">
                 <h3>Sympli</h3>
@@ -377,7 +500,7 @@ const Portfolio = () => {
             <div className="project-item">
               <div className="project-image-wrapper">
                 <img src="fdp_Images/fdp-logo.jpg" alt="Website Redesign" className="project-thumbnail" />
-                <Link to="fdp" className="view-project">View Project <span className="arrow-icon">→</span></Link>
+                <Link to="fdp" className="view-project" onClick={() => window.scrollTo(0, 0)}>View Project <span className="arrow-icon">→</span></Link>
               </div>
               <div className="project-info">
                 <h3>Flight Delayed Prediction</h3>
@@ -390,7 +513,7 @@ const Portfolio = () => {
             <div className="project-item">
               <div className="project-image-wrapper">
                 <img src="/etd-final-logo.png" alt="Data Visualization" className="project-thumbnail" />
-                <Link to='/etd' className="view-project">View Project <span className="arrow-icon">→</span></Link>
+                <Link to='/etd' className="view-project" onClick={() => window.scrollTo(0, 0)}>View Project <span className="arrow-icon">→</span></Link>
               </div>
               <div className="project-info">
                 <h3>Effective Team Dynamics</h3>
@@ -403,7 +526,7 @@ const Portfolio = () => {
             <div className="project-item">
               <div className="project-image-wrapper">
                 <img src="ATL Food Finder/Logo copy.webp" alt="Mobile App" className="project-thumbnail" />
-                <Link to='atlFoodFinder' className="view-project">View Project <span className="arrow-icon">→</span></Link>
+                <Link to='atlFoodFinder' className="view-project" onClick={() => window.scrollTo(0, 0)}>View Project <span className="arrow-icon">→</span></Link>
               </div>
               <div className="project-info">
                 <h3>Atlanta Food Finder</h3>
@@ -416,7 +539,7 @@ const Portfolio = () => {
             <div className="project-item">
               <div className="project-image-wrapper">
                 <img src="/email-phishing-logo.jpg" alt="AI Project" className="project-thumbnail" />
-                <Link to='EmailPhishingDetection' className="view-project">View Project <span className="arrow-icon">→</span></Link>
+                <Link to='EmailPhishingDetection' className="view-project" onClick={() => window.scrollTo(0, 0)}>View Project <span className="arrow-icon">→</span></Link>
               </div>
               <div className="project-info">
                 <h3>Email Phishing Detection</h3>
@@ -439,8 +562,10 @@ const Portfolio = () => {
       
       {/* Skills Section */}
       <section id="section-skills" className="skills-section">
+        <div className="project2-Scroll"></div>
+        <div className="animation2-Scroll"></div>
         <h2 className="section-title">Skills</h2>
-        <div className="section-line"></div>
+        {/* <div className="section-line"></div> */}
         
         <div className="skills-container">
           <div className="left-fade"></div>

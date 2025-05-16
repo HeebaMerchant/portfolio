@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './AtlantaFoodFinder.css';
+import BackButton from './BackButton';
+import ProjectNavBar from './ProjectNavBar';
 
 const AtlantaFoodFinder = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -14,23 +16,24 @@ const AtlantaFoodFinder = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Define navigation links for this project
+  const navLinks = [
+    { id: 'home', label: 'Home' },
+    { id: 'features', label: 'Features' },
+    { id: 'tech', label: 'Tech Stack' },
+    { id: 'team', label: 'Team' }
+  ];
+
   return (
     <div className="aff-container">
+      <BackButton />
+      
       {/* Navigation */}
-      <nav className={`aff-nav ${scrollY > 100 ? 'scrolled' : ''}`}>
-        <div className="nav-wrapper">
-          <div className="nav-logo">
-            <span className="logo-icon">🍕</span>
-            <span className="logo-text">Atlanta Food Finder</span>
-          </div>
-          <div className="nav-menu">
-            <a href="#home" className="nav-link active">Home</a>
-            <a href="#features" className="nav-link">Features</a>
-            <a href="#tech" className="nav-link">Tech</a>
-            <a href="#team" className="nav-link">Team</a>
-          </div>
-        </div>
-      </nav>
+      <ProjectNavBar 
+        title="Atlanta Food Finder"
+        links={navLinks}
+        theme="aff"
+      />
 
       {/* Hero Section */}
       <section className="hero-section" id="home">

@@ -7,11 +7,13 @@ import FlightDelayedPrediction from './components/FlightDelayedPrediction.jsx'
 import AtlantaFoodFinder from './components/AtlantaFoodFinder.jsx';
 import EmailPhishingDetection from './components/EmailPhishingDetection.jsx'
 import MediaProjectDemo from './components/ObjectModeling.jsx'
+import ScrollToTop from './components/ScrollToTop';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<div className="App"><Portfolio /></div>} />
         <Route path="/sympli" element={<div className="App"><SympliPage /></div>} />
