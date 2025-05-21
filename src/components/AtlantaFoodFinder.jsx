@@ -21,7 +21,46 @@ const AtlantaFoodFinder = () => {
     { id: 'home', label: 'Home' },
     { id: 'features', label: 'Features' },
     { id: 'tech', label: 'Tech Stack' },
-    { id: 'team', label: 'Team' }
+    { id: 'flow', label: 'User Flow' }
+  ];
+
+  // User flow steps data
+  const userflowSteps = [
+    {
+      title: 'User Authentication',
+      desc: 'Register or log in to access personalized features like saving favorites and leaving reviews. Secure authentication and password reset included.',
+      img: '/ATL Food Finder/login.png',
+    },
+    {
+      title: 'Home',
+      desc: 'Home page with search interface and navigation to other pages',
+      img: '/ATL Food Finder/home.gif',
+    },
+    {
+      title: 'Restaurant Search',
+      desc: 'Search for restaurants by name, address, cuisine, or rating. Use advanced filters to find exactly what you are craving.',
+      img: '/ATL Food Finder/search.png',
+    },
+    {
+      title: 'Geolocation & Map',
+      desc: 'View search results on an interactive map. Click pins to see details and get directions to restaurants across Atlanta.',
+      img: '/ATL Food Finder/map.png',
+    },
+    {
+      title: 'Restaurant Details',
+      desc: 'See detailed info: address, contact, cuisine, ratings, and reviews. Decide where to eat with confidence.',
+      img: '/ATL Food Finder/detail.png',
+    },
+    {
+      title: 'User Reviews',
+      desc: 'Read and leave reviews for restaurants you have visited. See up-to-date ratings and help others make informed choices.',
+      img: '/ATL Food Finder/review.png',
+    },
+    {
+      title: 'Favorites',
+      desc: 'Add restaurants to your favorites for quick access. Curate your own list of go-to spots in Atlanta.',
+      img: '/ATL Food Finder/favorite.png',
+    }
   ];
 
   return (
@@ -58,10 +97,10 @@ const AtlantaFoodFinder = () => {
           </p>
           
           <div className="hero-actions">
-            <button className="btn-primary">
+            {/* <button className="btn-primary">
               <span>Launch App</span>
-            </button>
-            <button className="btn-secondary">
+            </button> */}
+            <button className="btn-primary" onClick={() => document.getElementById('demo-video').scrollIntoView({ behavior: 'smooth' })}>
               View Demo
             </button>
           </div>
@@ -210,8 +249,28 @@ const AtlantaFoodFinder = () => {
         </div>
       </section>
 
+      {/* User Flow - Card Grid */}
+      <div className="section-header">
+            {/* <span className="section-tag">Technology</span> */}
+            <h2 className="section-title">User Flow: How It Works</h2>
+      </div>
+      <section className="userflow-grid-section dark-card" id="flow">
+        {/* <h2 className="section-title">User Flow: How It Works</h2> */}
+        <div className="userflow-grid">
+          {userflowSteps.map((step, idx) => (
+            <div className="userflow-card" key={step.title} style={{ animationDelay: `${0.1 + idx * 0.1}s` }}>
+              <div className="userflow-img">
+                <img src={step.img} alt={step.title} />
+              </div>
+              <div className="userflow-title">{step.title}</div>
+              <div className="userflow-desc">{step.desc}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Team Section */}
-      <section className="team-section" id="team">
+      {/* <section className="team-section" id="team">
         <div className="section-wrapper">
           <div className="section-header">
             <span className="section-tag">Team</span>
@@ -246,40 +305,15 @@ const AtlantaFoodFinder = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      {/* Timeline Section */}
-      <section className="timeline-section">
-        <div className="section-wrapper">
-          <div className="section-header">
-            <span className="section-tag">Journey</span>
-            <h2 className="section-title">Project Timeline</h2>
-          </div>
-          
-          <div className="timeline-container">
-            <div className="timeline-item">
-              <div className="timeline-dot"></div>
-              <div className="timeline-content">
-                <h4>May 2024</h4>
-                <p>Project Kickoff & Planning</p>
-              </div>
-            </div>
-            <div className="timeline-item">
-              <div className="timeline-dot"></div>
-              <div className="timeline-content">
-                <h4>June 2024</h4>
-                <p>Development & API Integration</p>
-              </div>
-            </div>
-            <div className="timeline-item">
-              <div className="timeline-dot"></div>
-              <div className="timeline-content">
-                <h4>July 2024</h4>
-                <p>Testing & Deployment</p>
-              </div>
-            </div>
-          </div>
-        </div>
+      {/* Demo Video Section */}
+      <div className="section-header">
+            {/* <span className="section-tag">Technology</span> */}
+            <h2 className="section-title">Watch the Demo</h2>
+      </div>
+      <section className="demo-video-section" id="demo-video">
+        <video src="/ATL Food Finder/ATLFoodFinderDemoVideo.mp4" controls style={{ width: '100%', maxWidth: '800px', margin: '0 auto' }} />
       </section>
 
       {/* Footer */}
@@ -292,7 +326,6 @@ const AtlantaFoodFinder = () => {
           <div className="footer-links">
             <a href="https://sites.google.com/view/group4teamwebsite">Website</a>
             <a href="#">GitHub</a>
-            <a href="#">Contact</a>
           </div>
           <div className="footer-year">© 2024</div>
         </div>

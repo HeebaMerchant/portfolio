@@ -322,7 +322,7 @@ const Portfolio = () => {
       </section>
 
       {/* Hero Section with depth layers and advanced scroll effects */}
-      <section className="hero" id="#section-education" ref={gtSectionRef}>
+      <section className="hero" id="section-education" ref={gtSectionRef}>
         <div className="depth-layer depth-layer-1"></div>
         <div className="depth-layer depth-layer-2"></div>
         <div className="depth-layer depth-layer-3"></div>
@@ -428,12 +428,23 @@ const Portfolio = () => {
               <div className="timeline-year">2020</div>
               <div className="timeline-content scroll-reveal">
                 <h2 className="timeline-heading">Beginning at Georgia Tech</h2>
-                <p className="timeline-description">Started my journey at Georgia Tech, diving into foundational computer science concepts and exploring the rich tech ecosystem. Earned Dean's List recognition in July 2021 and December 2021 for academic excellence.</p>
-                
+                <p className="timeline-description">Started my journey at Georgia Tech as a Biology/Neuroscience major, diving into foundational concepts and exploring the rich academic ecosystem.</p>
                 <div className="timeline-details">
-                  <span className="timeline-detail">Dean's List Jul & Dec 2021</span>
-                  <span className="timeline-detail">ACM Member</span>
+                  <span className="timeline-detail">Bio/Neuroscience Major</span>
                   <span className="timeline-detail">Foundations</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Timeline Event 2021 */}
+            <div className="timeline-event">
+              <div className="timeline-year">2021</div>
+              <div className="timeline-content scroll-reveal">
+                <h2 className="timeline-heading">Switched to Computer Science</h2>
+                <p className="timeline-description">Changed my major to Computer Science. Recognized on the Dean's List for both July and December. Began exploring new opportunities in the CS field.</p>
+                <div className="timeline-details">
+                  <span className="timeline-detail">Dean's List Summer & Fall</span>
+                  <span className="timeline-detail">CS Major</span>
                 </div>
               </div>
             </div>
@@ -442,29 +453,131 @@ const Portfolio = () => {
             <div className="timeline-event">
               <div className="timeline-year">2022</div>
               <div className="timeline-content scroll-reveal">
-                <h2 className="timeline-heading">Intelligence Specialization</h2>
-                <p className="timeline-description">Focused on AI and machine learning specialization. Achieved President's List in May and December 2022, and Dean's List in May 2023. Won 2nd place at HackGT for an innovative AI-powered healthcare solution.</p>
-                
+                <h2 className="timeline-heading">Academic Excellence</h2>
+                <p className="timeline-description">Focused on academic growth and excellence. Achieved President's List in May, demonstrating commitment to my studies.</p>
                 <div className="timeline-details">
-                  <span className="timeline-detail">President's List 2022</span>
-                  <span className="timeline-detail">Dean's List May 2023</span>
-                  <span className="timeline-detail">HackGT 2nd Place</span>
+                  <span className="timeline-detail">President's List May 2022</span>
                 </div>
               </div>
             </div>
 
-            {/* Timeline Event 3 */}
+            {/* Timeline Event 2023 */}
+            <div className="timeline-event">
+              <div className="timeline-year">2023</div>
+              <div className="timeline-content scroll-reveal">
+                <h2 className="timeline-heading">Dean's List Achievement</h2>
+                <p className="timeline-description">Continued academic success with recognition on the Dean's List and contributed to collaborative projects.</p>
+                <div className="timeline-details">
+                  <span className="timeline-detail">Dean's List</span>
+                  <span className="timeline-detail">Projects</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Timeline Event 2024 */}
             <div className="timeline-event">
               <div className="timeline-year">2024</div>
               <div className="timeline-content scroll-reveal">
-                <h2 className="timeline-heading">Senior Year & Beyond</h2>
-                <p className="timeline-description">Completing my final year with advanced projects in AI. Earned Dean's List Fall 2024 and Faculty Honors Spring 2025. Won 3rd place at Hacklytics 2025 for Sympli healthcare app, and served as a teaching assistant for the Machine Learning course.</p>
-                
+                <h2 className="timeline-heading">Intelligence Media Focus</h2>
+                <p className="timeline-description">Specialized in Intelligence Media, combining AI concepts with media applications. Developed innovative projects at the intersection of these fields.</p>
                 <div className="timeline-details">
-                  <span className="timeline-detail">Dean's List Fall 2024</span>
-                  <span className="timeline-detail">Faculty Honors Spring 2025</span>
-                  <span className="timeline-detail">Hacklytics Winner</span>
+                  <span className="timeline-detail">Intell Media Specialization</span>
                 </div>
+              </div>
+            </div>
+
+             {/* Timeline Event 2025 */}
+             <div className="timeline-event">
+              <div className="timeline-year">2025</div>
+              <div className="timeline-content scroll-reveal">
+                <h2 className="timeline-heading">Campus Involvement & Hackathons</h2>
+                <p className="timeline-description">Increased campus involvement through various organizations and activities. Participated in Hacklytics, gaining valuable collaborative experience and networking opportunities</p>
+                <div className="timeline-details">
+                  <span className="timeline-detail">Campus Involvement</span>
+                  <span className="timeline-detail">Hacklytics</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Timeline Event 2026 */}
+            <div className="timeline-event">
+              <div className="timeline-year">2026</div>
+              <div className="timeline-content scroll-reveal">
+                <h2 className="timeline-heading">Master's Program</h2>
+                <p className="timeline-description">Pursuing a Master's degree at Georgia Tech to further specialize and deepen my knowledge in computer science and intelligence systems.</p>
+                <div className="timeline-details">
+                  <span className="timeline-detail">Masters Program</span>
+                  <span className="timeline-detail">Research</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* Achievements Section */}
+      <section className="achievements-section">
+        <div className="achievements-container">
+          <h2 className="section-title">Achievements</h2>
+          <div className="section-line"></div>
+          
+          <div className="achievements-grid">
+
+            <div className="achievement-card">
+              <div className="achievement-icon">🎓</div>
+              <h3>Faculty Honors</h3>
+              <p>Achieved Faculty Honors for exceptional academic performance</p>
+              <span className="achievement-date">May 2025</span>
+            </div>
+
+            <div className="achievement-card">
+              <div className="achievement-icon">🎓</div>
+              <h3>President's List</h3>
+              <p>Achieved President's List recognition for academic excellence</p>
+              <span className="achievement-date">May 2022, Dec 2022</span>
+            </div>
+
+           <div className="achievement-card">
+              <div className="achievement-icon">🎓</div>
+              <h3>Dean's List</h3>
+              <p>Achieved Dean's List recognition for academic excellence</p>
+              <span className="achievement-date">Jul 2021, Dec 2021, May 2023</span>
+            </div>
+
+            <div className="achievement-card">
+              <div className="achievement-icon">🏆</div>
+              <h3>Hacklytics Winner</h3>
+              <p>Placed 3rd at Hacklytics 2025 under the Generative AI category for Sympli healthcare app</p>
+              <span className="achievement-date">2025</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Campus & Community Involvement Section */}
+      <section className="community-section">
+        <div className="community-container">
+          <h2 className="section-title">Campus & Community Involvement</h2>
+          <div className="section-line"></div>
+          <div className="community-grid">
+            <div className="community-card community-horizontal">
+              <div className="community-logo-col">
+                <img src="/logo/bdbi.png" alt="BDBI Logo" className="community-logo" />
+              </div>
+              <div className="community-content-col">
+                <div className="community-header">
+                  <h3>Director of Marketing, <span className="club-name"><em>BDBI – Big Data Big Impact</em></span></h3>
+                  <span className="community-date">Aug 2024 - Present</span>
+                </div>
+                <ul className="community-list">
+                  <li>Designed posts and promotional content for events across all social media platforms, increasing attendance by 30%.</li>
+                  <li>Utilized Canva, Figma, and Adobe Photoshop to create visually engaging designs.</li>
+                  <li>Collaborated with other clubs at Georgia Tech to co-host and design events, expanding outreach and engagement.</li>
+                </ul>
+                <a href="https://gtbigdatabigimpact.com/" className="community-link" target="_blank" rel="noopener noreferrer">
+                  Visit Club Website
+                </a>
               </div>
             </div>
           </div>
@@ -517,7 +630,7 @@ const Portfolio = () => {
               </div>
               <div className="project-info">
                 <h3>Effective Team Dynamics</h3>
-                <p>Interactive data visualization dashboard with real-time updates and filtering capabilities for complex data analysis.</p>
+                <p>Interactive data visualization dashboard with real-time updates and filtering capabilities for complex data analysis. <a href="https://etdworkshop.mse.gatech.edu/" target="_blank" rel="noopener noreferrer" className="project-link">Visit Workshop Website</a></p>
                 <div className="tech-stack">D3.js • Python • CSV</div>
               </div>
             </div>
@@ -565,14 +678,14 @@ const Portfolio = () => {
         <div className="project2-Scroll"></div>
         <div className="animation2-Scroll"></div>
         <h2 className="section-title">Skills</h2>
-        {/* <div className="section-line"></div> */}
+        <div className="section-line"></div>
         
         <div className="skills-container">
           <div className="left-fade"></div>
           <div className="right-fade"></div>
           <div className="skills-heading">
             <p>
-              Powering your favorite frameworks and tools
+              These are the technologies and tools I've mastered to bring ideas to life and tackle challenges in software, AI, and design.
             </p>
           </div>
           
@@ -655,6 +768,28 @@ const Portfolio = () => {
                   <div className="contact-text">
                     <h4>Location</h4>
                     <p>Atlanta, Georgia</p>
+                  </div>
+                </div>
+
+                {/* Resume Download Button */}
+                <div className="contact-item resume-download">
+                  <div className="contact-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                      <polyline points="7 10 12 15 17 10"></polyline>
+                      <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                  </div>
+                  <div className="contact-text">
+                    <h4>Resume</h4>
+                    <a href="/Heeba_Merchant_Resume.pdf" download className="resume-link">
+                      Download Resume
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                      </svg>
+                    </a>
                   </div>
                 </div>
                 

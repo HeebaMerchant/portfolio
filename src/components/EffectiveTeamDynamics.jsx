@@ -73,7 +73,7 @@ const EffectiveTeamDynamics = () => {
             <div className="hero-badges">
               <div className="badge primary">
                 <span className="badge-icon">🏆</span>
-                GT Capstone Project
+                1st Place Winner of GT Capstone Expo
               </div>
               <div className="badge secondary">
                 <span className="badge-icon">🤝</span>
@@ -83,6 +83,9 @@ const EffectiveTeamDynamics = () => {
             <div className="hero-cta">
               <a href={`https://github.com/ameerahmourad/JIA-4315-ETD-App`} target="_blank" rel="noopener noreferrer" className="btn-primary">
                 View GitHub Repo
+              </a>
+              <a href="https://etdworkshop.mse.gatech.edu/" target="_blank" rel="noopener noreferrer" className="btn-secondary">
+                Visit Workshop Website
               </a>
               <a 
                 href="/" 
@@ -111,7 +114,7 @@ const EffectiveTeamDynamics = () => {
           <div className="overview-grid">
             <div className="overview-item">
               <div className="overview-image">
-                <img src="/images/etd-dashboard.png" alt="Dashboard" />
+                <img src="/etd/home.png" alt="Dashboard" />
               </div>
               <div className="overview-text">
                 <h3>Digital Transformation</h3>
@@ -126,7 +129,7 @@ const EffectiveTeamDynamics = () => {
             
             <div className="overview-item reverse">
               <div className="overview-image">
-                <img src="/images/etd-activities.png" alt="Activities Interface" />
+                <img src="/etd/activities.png" alt="Activities Interface" />
               </div>
               <div className="overview-text">
                 <h3>Key Benefits</h3>
@@ -343,7 +346,7 @@ const EffectiveTeamDynamics = () => {
           <div className="tech-grid">
             <div className="tech-item">
               <div className="tech-icon">
-                <img src="/icons/react.svg" alt="React" />
+                <img src="/logo/react.png" alt="React" />
               </div>
               <h4>React</h4>
               <p>Frontend framework for building interactive UI</p>
@@ -351,7 +354,7 @@ const EffectiveTeamDynamics = () => {
             
             <div className="tech-item">
               <div className="tech-icon">
-                <img src="/icons/nodejs.svg" alt="Node.js" />
+                <img src="/logo/nodeJS.png" alt="Node.js" />
               </div>
               <h4>Node.js</h4>
               <p>JavaScript runtime for server-side development</p>
@@ -359,7 +362,7 @@ const EffectiveTeamDynamics = () => {
             
             <div className="tech-item">
               <div className="tech-icon">
-                <img src="/icons/sqlite.svg" alt="SQLite" />
+                <img src="/logo/sqlite.png" alt="SQLite" />
               </div>
               <h4>SQLite</h4>
               <p>Lightweight database for persistent data storage</p>
@@ -367,7 +370,7 @@ const EffectiveTeamDynamics = () => {
             
             <div className="tech-item">
               <div className="tech-icon">
-                <img src="/icons/sequelize.svg" alt="Sequelize" />
+                <img src="/logo/sequelize.svg" alt="Sequelize" />
               </div>
               <h4>Sequelize</h4>
               <p>ORM for database operations and migrations</p>
@@ -375,7 +378,7 @@ const EffectiveTeamDynamics = () => {
             
             <div className="tech-item">
               <div className="tech-icon">
-                <img src="/icons/expressjs.svg" alt="Express" />
+                <img src="/logo/expressJS.png" alt="Express" />
               </div>
               <h4>Express</h4>
               <p>Web framework for building API endpoints</p>
@@ -383,7 +386,7 @@ const EffectiveTeamDynamics = () => {
             
             <div className="tech-item">
               <div className="tech-icon">
-                <img src="/icons/jwt.svg" alt="JWT" />
+                <img src="/logo/JWT.svg" alt="JWT" />
               </div>
               <h4>JWT</h4>
               <p>Token-based authentication for secure sessions</p>

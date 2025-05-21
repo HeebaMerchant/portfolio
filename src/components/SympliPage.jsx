@@ -67,7 +67,13 @@ const SympliPage = () => {
                 Visit Website →
               </a>
               <button className="secondary-button">
+                <a 
+                href="https://github.com/B-Ricey763/sympli-health" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
                 View Code →
+              </a>
               </button>
             </div>
           </div>
