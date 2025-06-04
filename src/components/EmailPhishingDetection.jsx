@@ -21,7 +21,9 @@ const EmailPhishingDetection = () => {
     { id: 'overview', label: 'Overview' },
     { id: 'problem', label: 'Problem' },
     { id: 'solution', label: 'Solution' },
-    { id: 'results', label: 'Results' }
+    { id: 'results', label: 'Results' },
+    { id: 'team', label: 'Team' },
+    { id: 'future', label: 'Future Improvements' }
   ];
 
   const models = {
@@ -426,7 +428,7 @@ const EmailPhishingDetection = () => {
       </section>
 
       {/* Team Section */}
-      <section className="team-section">
+      <section id="team" className="team-section">
         <div className="section-wrapper">
           <div className="section-header">
             <span className="section-label">ML Group 51</span>
@@ -464,7 +466,7 @@ const EmailPhishingDetection = () => {
       </section>
 
       {/* Future Work Section */}
-      <section className="future-section">
+      <section id="future" className="future-section">
         <div className="section-wrapper">
           <div className="section-header">
             <span className="section-label">Next Steps</span>

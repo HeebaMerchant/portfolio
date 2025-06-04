@@ -1110,6 +1110,10 @@
     height: 100%;
   }
   
+  .roadmap-item::before {
+    display: none !important;
+  }
+  
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -1173,7 +1177,7 @@
     padding-left: 1.25rem;
     margin-bottom: 0.5rem;
     font-size: 0.9rem;
-    color: var(--text-secondary);
+    /* color: var(--text-secondary); */
     line-height: 1.5;
     transition: transform 0.3s ease, color 0.3s ease;
   }

@@ -21,7 +21,8 @@ const AtlantaFoodFinder = () => {
     { id: 'home', label: 'Home' },
     { id: 'features', label: 'Features' },
     { id: 'tech', label: 'Tech Stack' },
-    { id: 'flow', label: 'User Flow' }
+    { id: 'flow', label: 'User Flow' },
+    { id: 'demo-video', label: 'Demo Video' }
   ];
 
   // User flow steps data
@@ -308,7 +309,7 @@ const AtlantaFoodFinder = () => {
       </section> */}
 
       {/* Demo Video Section */}
-      <div className="section-header">
+      <div className="section-header" id="demo-video">
             {/* <span className="section-tag">Technology</span> */}
             <h2 className="section-title">Watch the Demo</h2>
       </div>

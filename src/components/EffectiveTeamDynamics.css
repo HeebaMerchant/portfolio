@@ -544,8 +544,34 @@
   .team-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+    gap: 1rem;
     margin-bottom: 3rem;
+  }
+  
+  .team-lead {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+  }
+  
+  .team-lead .team-member {
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .team-others-horizontal {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+  
+  .team-others-horizontal .team-member {
+    flex: none;
+    width: 100%;
+    max-width: 230px;
+    padding: 2rem;
   }
   
   .team-member {
@@ -718,7 +744,7 @@
     }
     
     .team-grid {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
     }
     
     .feature-item {

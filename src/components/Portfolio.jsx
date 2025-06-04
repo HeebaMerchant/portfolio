@@ -481,7 +481,7 @@ const Portfolio = () => {
                 <h2 className="timeline-heading">Intelligence Media Focus</h2>
                 <p className="timeline-description">Specialized in Intelligence Media, combining AI concepts with media applications. Developed innovative projects at the intersection of these fields.</p>
                 <div className="timeline-details">
-                  <span className="timeline-detail">Intell Media Specialization</span>
+                  <span className="timeline-detail">Intell Media Focus</span>
                 </div>
               </div>
             </div>
@@ -605,7 +605,7 @@ const Portfolio = () => {
               <div className="project-info">
                 <h3>Sympli</h3>
                 <p>Award-winning healthcare application that won 3rd place at Hacklytics 2025. Created an innovative solution for patient management with AI-powered diagnostics.</p>
-                <div className="tech-stack">React • TypeScript • Firebase</div>
+                <div className="tech-stack">React • TypeScript • Firebase • Google Gemini API</div>
               </div>
             </div>
             
@@ -618,7 +618,7 @@ const Portfolio = () => {
               <div className="project-info">
                 <h3>Flight Delayed Prediction</h3>
                 <p>Dynamic website with modern UI elements and responsive design for optimal user experience across all devices.</p>
-                <div className="tech-stack">JavaScript • CSS3 • Figma</div>
+                <div className="tech-stack">React • Tailwind CSS • Node.js • Firebase • Google Cloud Functions</div>
               </div>
             </div>
             
@@ -631,7 +631,7 @@ const Portfolio = () => {
               <div className="project-info">
                 <h3>Effective Team Dynamics</h3>
                 <p>Interactive data visualization dashboard with real-time updates and filtering capabilities for complex data analysis. <a href="https://etdworkshop.mse.gatech.edu/" target="_blank" rel="noopener noreferrer" className="project-link">Visit Workshop Website</a></p>
-                <div className="tech-stack">D3.js • Python • CSV</div>
+                <div className="tech-stack">React • SQL • Node.js</div>
               </div>
             </div>
             
@@ -644,7 +644,7 @@ const Portfolio = () => {
               <div className="project-info">
                 <h3>Atlanta Food Finder</h3>
                 <p>Cross-platform mobile application with seamless user experience and offline capabilities for productivity management.</p>
-                <div className="tech-stack">React Native • Redux • Expo</div>
+                <div className="tech-stack">HTML • CSS • Javascript • Python</div>
               </div>
             </div>
             
@@ -657,7 +657,7 @@ const Portfolio = () => {
               <div className="project-info">
                 <h3>Email Phishing Detection</h3>
                 <p>Smart AI assistant that helps users manage schedules and automate routine tasks with natural language processing.</p>
-                <div className="tech-stack">TensorFlow • Python • NLP</div>
+                <div className="tech-stack">Python • Machine Learning libraries (scikit-learn, TF-IDF) • Regex • Data visualization</div>
               </div>
             </div>
           </div>

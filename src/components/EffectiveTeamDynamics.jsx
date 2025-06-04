@@ -6,6 +6,7 @@ import ProjectNavBar from './ProjectNavBar';
 const EffectiveTeamDynamics = () => {
   const [scrollY, setScrollY] = useState(0);
   const [activeSection, setActiveSection] = useState('intro');
+  const [activeFeature, setActiveFeature] = useState('auth');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,6 +44,10 @@ const EffectiveTeamDynamics = () => {
     { id: 'features', label: 'Features' },
     { id: 'team', label: 'Team' }
   ];
+
+  const handleFeatureClick = (featureId) => {
+    setActiveFeature(featureId);
+  };
 
   return (
     <div className="etd-container">
@@ -436,13 +441,20 @@ const EffectiveTeamDynamics = () => {
                   </div>
                 </div>
                 <div className="preview-content">
-                  <img src="/images/etd-feature-auth.png" alt="Authentication" />
+                  {activeFeature === 'auth' && <img src="/etd/GT SSO/GT SSO.gif" alt="Authentication" />}
+                  {activeFeature === 'strength' && <img src="/etd/strengths/strengths.gif" alt="Strength Selection" />}
+                  {activeFeature === 'team' && <img src="/etd/team/team.gif" alt="Team Management" />}
+                  {activeFeature === 'activities' && <img src="/etd/activity/activity.gif" alt="Interactive Activities" />}
+                  {activeFeature === 'pdf' && <img src="/etd/pdf/pdf.gif" alt="PDF Report Generation" />}
                 </div>
               </div>
             </div>
             
             <div className="features-list">
-              <div className="feature-item active">
+              <div 
+                className={`feature-item ${activeFeature === 'auth' ? 'active' : ''}`}
+                onClick={() => handleFeatureClick('auth')}
+              >
                 <div className="feature-number">01</div>
                 <div className="feature-content">
                   <h3>Secure Authentication</h3>
@@ -450,7 +462,10 @@ const EffectiveTeamDynamics = () => {
                 </div>
               </div>
               
-              <div className="feature-item">
+              <div 
+                className={`feature-item ${activeFeature === 'strength' ? 'active' : ''}`}
+                onClick={() => handleFeatureClick('strength')}
+              >
                 <div className="feature-number">02</div>
                 <div className="feature-content">
                   <h3>Strength Selection</h3>
@@ -458,7 +473,10 @@ const EffectiveTeamDynamics = () => {
                 </div>
               </div>
               
-              <div className="feature-item">
+              <div 
+                className={`feature-item ${activeFeature === 'team' ? 'active' : ''}`}
+                onClick={() => handleFeatureClick('team')}
+              >
                 <div className="feature-number">03</div>
                 <div className="feature-content">
                   <h3>Team Management</h3>
@@ -466,7 +484,10 @@ const EffectiveTeamDynamics = () => {
                 </div>
               </div>
               
-              <div className="feature-item">
+              <div 
+                className={`feature-item ${activeFeature === 'activities' ? 'active' : ''}`}
+                onClick={() => handleFeatureClick('activities')}
+              >
                 <div className="feature-number">04</div>
                 <div className="feature-content">
                   <h3>Interactive Activities</h3>
@@ -474,7 +495,10 @@ const EffectiveTeamDynamics = () => {
                 </div>
               </div>
               
-              <div className="feature-item">
+              <div 
+                className={`feature-item ${activeFeature === 'pdf' ? 'active' : ''}`}
+                onClick={() => handleFeatureClick('pdf')}
+              >
                 <div className="feature-number">05</div>
                 <div className="feature-content">
                   <h3>PDF Report Generation</h3>
@@ -507,6 +531,11 @@ const EffectiveTeamDynamics = () => {
                 <h4>Experience Consistency</h4>
                 <p>Standardized workshop delivery</p>
               </div>
+              <div className="benefit-item">
+                <div className="benefit-icon">📊</div>
+                <h4>Progress Tracking</h4>
+                <p>Real-time monitoring of team dynamics and activity completion</p>
+              </div>
             </div>
           </div>
         </div>
@@ -520,36 +549,38 @@ const EffectiveTeamDynamics = () => {
             <p className="section-subtitle">JIA-4315 Project Team</p>
           </div>
           
-          <div className="team-grid">
+          <div className="team-lead">
             <div className="team-member highlight">
               <h4>Heeba Merchant</h4>
-              <p>UI/UX Planner & Developer</p>
+              <p>UI/UX Planner & Full-Stack Developer</p>
               <span>Frontend Design & Implementation</span>
             </div>
-            
+          </div>
+
+          <div className="team-others-horizontal">
             <div className="team-member">
               <h4>Ameerah Mourad</h4>
-              <p>Team Lead & UI/UX Developer</p>
+              {/* <p>Team Lead & UI/UX Developer</p> */}
             </div>
             
             <div className="team-member">
               <h4>Scott Watanuki</h4>
-              <p>UI/UX & Full-Stack Developer</p>
+              {/* <p>UI/UX & Full-Stack Developer</p> */}
             </div>
             
             <div className="team-member">
               <h4>Kevin Cao</h4>
-              <p>Backend/Full-Stack Developer</p>
+              {/* <p>Backend/Full-Stack Developer</p> */}
             </div>
             
             <div className="team-member">
               <h4>Ben DiPrete</h4>
-              <p>Backend/Full-Stack Developer</p>
+              {/* <p>Backend/Full-Stack Developer</p> */}
             </div>
             
             <div className="team-member">
               <h4>Vincent Kong</h4>
-              <p>UI/UX Developer</p>
+              {/* <p>UI/UX Developer</p> */}
             </div>
           </div>
           

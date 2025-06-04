@@ -168,11 +168,13 @@
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+    justify-content: center;
   }
   
   .fdp-primary-button {
-    display: inline-flex;
+    display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     padding: 0.75rem 1.5rem;
     background-color: #38bdf8;

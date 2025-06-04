@@ -71,9 +71,9 @@ const FlightDelayedPrediction = () => {
               >
                 View on GitHub
               </a>
-              <button className="fdp-secondary-button">
+              {/* <button className="fdp-secondary-button">
                 Try Extension
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
