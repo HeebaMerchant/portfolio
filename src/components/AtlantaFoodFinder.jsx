@@ -1,20 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './AtlantaFoodFinder.css';
 import BackButton from './BackButton';
 import ProjectNavBar from './ProjectNavBar';
 
 const AtlantaFoodFinder = () => {
-  const [scrollY, setScrollY] = useState(0);
   const [activeTab, setActiveTab] = useState('search');
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   // Define navigation links for this project
   const navLinks = [
@@ -326,7 +316,7 @@ const AtlantaFoodFinder = () => {
           </div>
           <div className="footer-links">
             <a href="https://sites.google.com/view/group4teamwebsite">Website</a>
-            <a href="#">GitHub</a>
+            <a href="https://github.com/HeebaMerchant">GitHub</a>
           </div>
           <div className="footer-year">© 2024</div>
         </div>

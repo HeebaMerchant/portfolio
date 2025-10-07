@@ -12,7 +12,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/portfolio">
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<div className="App"><Portfolio /></div>} />

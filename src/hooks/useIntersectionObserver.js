@@ -20,7 +20,7 @@ export const useIntersectionObserver = (options = {}) => {
         observer.unobserve(currentElement);
       }
     };
-  }, []);
+  }, [options]);
 
   return [elementRef, isVisible];
 };

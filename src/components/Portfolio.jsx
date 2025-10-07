@@ -1,22 +1,17 @@
-import React, { useRef, useEffect, useState, useCallback } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import FrameworkCard from './FrameworkCard';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import './Portfolio.css';
 
 const Portfolio = () => {
-  const [introHeadingRef, introHeadingVisible] = useIntersectionObserver();
+  const [introHeadingRef] = useIntersectionObserver();
   const gtSectionRef = useRef(null);
   const projectsSectionRef = useRef(null);
   const heroContentRef = useRef(null);
   const gtLogoRef = useRef(null);
-  const [projectsVisible, setProjectsVisible] = useState(false);
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const [textVisible, setTextVisible] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [activePage, setActivePage] = useState('introduction');
-  const [scrolled, setScrolled] = useState(false);
   
   const [contactForm, setContactForm] = useState({
     name: '',
@@ -27,8 +22,6 @@ const Portfolio = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
   const timelineRef = useRef(null);
-  const zoomContainerRef = useRef(null);
-  const zoomTargetRef = useRef(null);
 
   // Track mouse position for parallax effects
   useEffect(() => {
@@ -56,11 +49,6 @@ const Portfolio = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-
-      // Enhanced scroll animations
-      const scrollY = window.scrollY;
-      
       // Apply scroll effects to hero section
       if (gtSectionRef.current) {
         const heroRect = gtSectionRef.current.getBoundingClientRect();
@@ -98,30 +86,6 @@ const Portfolio = () => {
         element.style.transform = `translateY(${yPos}px)`;
       });
 
-      if (gtSectionRef.current) {
-        const sectionTop = gtSectionRef.current.getBoundingClientRect().top;
-        const viewportHeight = window.innerHeight;
-        
-        const progress = Math.max(0, Math.min(1, 1 - (sectionTop / viewportHeight)));
-        setScrollProgress(progress);
-        
-        if (progress > 0.3 && imageLoaded) {
-          setTimeout(() => {
-            setTextVisible(true);
-          }, 300);
-        } else if (progress < 0.1) {
-          setTextVisible(false);
-        }
-      }
-
-      if (projectsSectionRef.current) {
-        const rect = projectsSectionRef.current.getBoundingClientRect();
-        const isVisible = rect.top < window.innerHeight * 0.8;
-        if (isVisible) {
-          setProjectsVisible(true);
-        }
-      }
-      
       updateActiveSection();
     };
 
@@ -149,7 +113,7 @@ const Portfolio = () => {
     handleScroll();
     
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [imageLoaded]);
+  }, []);
 
   // Add animation to timeline elements when they come into view
   useEffect(() => {
@@ -232,15 +196,6 @@ const Portfolio = () => {
     if (description) description.style.transform = 'translateZ(0)';
   };
 
-  const handleImageLoad = () => {
-    console.log("Image loaded");
-    setImageLoaded(true);
-  };
-
-  const translateY = -scrollProgress * 3.5;
-  const scale = 1 + (scrollProgress * 0.12);
-  const parallaxX = mousePosition.x * 5;
-  const parallaxY = mousePosition.y * 5;
 
   const handleContactChange = (e) => {
     setContactForm({
@@ -329,7 +284,7 @@ const Portfolio = () => {
         
         <div className="gt-emblem parallax-element" aria-hidden="true">GT</div>
         <img 
-          src="/georgia-tech-logo.png" 
+          src={`${process.env.PUBLIC_URL}/georgia-tech-on-wood-8u049xas1fbnjmot.jpg`} 
           alt="Georgia Tech" 
           className="gt-logo parallax-element" 
           aria-hidden="true"
@@ -407,7 +362,7 @@ const Portfolio = () => {
         <div className="timeline-container">
           {/* Single background image for the entire timeline */}
           <div className="timeline-background" style={{
-            backgroundImage: 'url(/georgia-tech-joins-cumu.png)',
+            backgroundImage: `url(${process.env.PUBLIC_URL}/georgia-tech-joins-cumu.png)`,
             backgroundSize: 'cover',
             backgroundPosition: 'center center',
             width: '100vw',
@@ -563,7 +518,7 @@ const Portfolio = () => {
           <div className="community-grid">
             <div className="community-card community-horizontal">
               <div className="community-logo-col">
-                <img src="/logo/bdbi.png" alt="BDBI Logo" className="community-logo" />
+                <img src={`${process.env.PUBLIC_URL}/logo/bdbi.png`} alt="BDBI Logo" className="community-logo" />
               </div>
               <div className="community-content-col">
                 <div className="community-header">
@@ -599,8 +554,8 @@ const Portfolio = () => {
           {/* SYMPLI */}
             <div className="project-item">
               <div className="project-image-wrapper">
-                <img src="sympli final.jpeg" alt="Healthcare App" className="project-thumbnail" />
-                <Link to="/sympli" className="view-project" onClick={() => window.scrollTo(0, 0)}>View Project <span className="arrow-icon">→</span></Link>
+                <img src={`${process.env.PUBLIC_URL}/sympli final.jpeg`} alt="Healthcare App" className="project-thumbnail" />
+                <Link to="/sympli" className="view-project">View Project <span className="arrow-icon">→</span></Link>
               </div>
               <div className="project-info">
                 <h3>Sympli</h3>
@@ -612,8 +567,8 @@ const Portfolio = () => {
             {/* FLIGHT DELAYED PREDICTION */}
             <div className="project-item">
               <div className="project-image-wrapper">
-                <img src="fdp_Images/fdp-logo.jpg" alt="Website Redesign" className="project-thumbnail" />
-                <Link to="fdp" className="view-project" onClick={() => window.scrollTo(0, 0)}>View Project <span className="arrow-icon">→</span></Link>
+                <img src={`${process.env.PUBLIC_URL}/fdp_Images/fdp-logo.jpg`} alt="Website Redesign" className="project-thumbnail" />
+                <Link to="/fdp" className="view-project">View Project <span className="arrow-icon">→</span></Link>
               </div>
               <div className="project-info">
                 <h3>Flight Delayed Prediction</h3>
@@ -625,8 +580,8 @@ const Portfolio = () => {
             {/* EFFECTIVE TEAM DYANMICS */}
             <div className="project-item">
               <div className="project-image-wrapper">
-                <img src="/etd-final-logo.png" alt="Data Visualization" className="project-thumbnail" />
-                <Link to='/etd' className="view-project" onClick={() => window.scrollTo(0, 0)}>View Project <span className="arrow-icon">→</span></Link>
+                <img src={`${process.env.PUBLIC_URL}/etd-final-logo.png`} alt="Data Visualization" className="project-thumbnail" />
+                <Link to="/etd" className="view-project">View Project <span className="arrow-icon">→</span></Link>
               </div>
               <div className="project-info">
                 <h3>Effective Team Dynamics</h3>
@@ -638,8 +593,8 @@ const Portfolio = () => {
             {/* ATLANTA FOOD FINDER */}
             <div className="project-item">
               <div className="project-image-wrapper">
-                <img src="ATL Food Finder/Logo copy.webp" alt="Mobile App" className="project-thumbnail" />
-                <Link to='atlFoodFinder' className="view-project" onClick={() => window.scrollTo(0, 0)}>View Project <span className="arrow-icon">→</span></Link>
+                <img src={`${process.env.PUBLIC_URL}/ATL Food Finder/Logo copy.webp`} alt="Mobile App" className="project-thumbnail" />
+                <Link to="/atlFoodFinder" className="view-project">View Project <span className="arrow-icon">→</span></Link>
               </div>
               <div className="project-info">
                 <h3>Atlanta Food Finder</h3>
@@ -651,8 +606,8 @@ const Portfolio = () => {
             {/* Email Phishing Detection */}
             <div className="project-item">
               <div className="project-image-wrapper">
-                <img src="/email-phishing-logo.jpg" alt="AI Project" className="project-thumbnail" />
-                <Link to='EmailPhishingDetection' className="view-project" onClick={() => window.scrollTo(0, 0)}>View Project <span className="arrow-icon">→</span></Link>
+                <img src={`${process.env.PUBLIC_URL}/email-phishing-logo.jpg`} alt="AI Project" className="project-thumbnail" />
+                <Link to="/EmailPhishingDetection" className="view-project">View Project <span className="arrow-icon">→</span></Link>
               </div>
               <div className="project-info">
                 <h3>Email Phishing Detection</h3>
@@ -663,9 +618,9 @@ const Portfolio = () => {
           </div>
           
           <div className="view-all-container">
-            <a href="#" className="view-all-button">
+            <button className="view-all-button" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
               View All Projects <span className="arrow-icon">→</span>
-            </a>
+            </button>
           </div>
         </div>
 
@@ -702,28 +657,28 @@ const Portfolio = () => {
             <FrameworkCard key="empty-row2-4" empty={true} />
             
             {/* Framework cards with icons */}
-            <FrameworkCard key="react" iconSrc="/logo/react.png" iconAlt="React" />
-            <FrameworkCard key="html" iconSrc="/logo/html.png" iconAlt="HTML" />
-            <FrameworkCard key="css" iconSrc="/logo/CSS.png" iconAlt="CSS" />
-            <FrameworkCard key="javascript" iconSrc="/logo/javascript.png" iconAlt="JavaScript" />
-            <FrameworkCard key="typescript" iconSrc="/logo/TypeScript.webp" iconAlt="TypeScript" />
-            <FrameworkCard key="tailwind" iconSrc="/logo/tailwind.png" iconAlt="Tailwind" />
-            <FrameworkCard key="shadcn" iconSrc="/logo/shadcn:ui.png" iconAlt="shadcn/ui" />
-            <FrameworkCard key="figma" iconSrc="/logo/figma.png" iconAlt="Figma" />
+            <FrameworkCard key="react" iconSrc={`${process.env.PUBLIC_URL}/logo/react.png`} iconAlt="React" />
+            <FrameworkCard key="html" iconSrc={`${process.env.PUBLIC_URL}/logo/html.png`} iconAlt="HTML" />
+            <FrameworkCard key="css" iconSrc={`${process.env.PUBLIC_URL}/logo/CSS.png`} iconAlt="CSS" />
+            <FrameworkCard key="javascript" iconSrc={`${process.env.PUBLIC_URL}/logo/javascript.png`} iconAlt="JavaScript" />
+            <FrameworkCard key="typescript" iconSrc={`${process.env.PUBLIC_URL}/logo/TypeScript.webp`} iconAlt="TypeScript" />
+            <FrameworkCard key="tailwind" iconSrc={`${process.env.PUBLIC_URL}/logo/tailwind.png`} iconAlt="Tailwind" />
+            <FrameworkCard key="shadcn" iconSrc={`${process.env.PUBLIC_URL}/logo/shadcn:ui.png`} iconAlt="shadcn/ui" />
+            <FrameworkCard key="figma" iconSrc={`${process.env.PUBLIC_URL}/logo/figma.png`} iconAlt="Figma" />
             
             {/* Row 3 - Empty cells first */}
             {Array(8).fill(null).map((_, index) => (
               <FrameworkCard key={`empty-row3-${index}`} empty={true} />
             ))}
             
-            <FrameworkCard key="assembly" iconSrc="/logo/assembly.png" iconAlt="Assembly" />
-            <FrameworkCard key="python" iconSrc="/logo/python.png" iconAlt="Python" />
-            <FrameworkCard key="nodejs" iconSrc="/logo/nodejs.png" iconAlt="Node.js" />
-            <FrameworkCard key="java" iconSrc="/logo/java.png" iconAlt="Java" />
-            <FrameworkCard key="c" iconSrc="/logo/c.png" iconAlt="C" />
-            <FrameworkCard key="django" iconSrc="/logo/django-Photoroom.png" iconAlt="Django" />
-            <FrameworkCard key="firebase" iconSrc="/logo/firebase.png" iconAlt="Firebase" />
-            <FrameworkCard key="gcp" iconSrc="/logo/gcp.png" iconAlt="Google Cloud" />
+            <FrameworkCard key="assembly" iconSrc={`${process.env.PUBLIC_URL}/logo/assembly.png`} iconAlt="Assembly" />
+            <FrameworkCard key="python" iconSrc={`${process.env.PUBLIC_URL}/logo/python.png`} iconAlt="Python" />
+            <FrameworkCard key="nodejs" iconSrc={`${process.env.PUBLIC_URL}/logo/nodeJS.png`} iconAlt="Node.js" />
+            <FrameworkCard key="java" iconSrc={`${process.env.PUBLIC_URL}/logo/java.png`} iconAlt="Java" />
+            <FrameworkCard key="c" iconSrc={`${process.env.PUBLIC_URL}/logo/c.png`} iconAlt="C" />
+            <FrameworkCard key="django" iconSrc={`${process.env.PUBLIC_URL}/logo/django-Photoroom.png`} iconAlt="Django" />
+            <FrameworkCard key="firebase" iconSrc={`${process.env.PUBLIC_URL}/logo/firebase.png`} iconAlt="Firebase" />
+            <FrameworkCard key="gcp" iconSrc={`${process.env.PUBLIC_URL}/logo/GCP.png`} iconAlt="Google Cloud" />
             
             {/* Row 4 - Empty cells first */}
             {Array(11).fill(null).map((_, index) => (
@@ -731,8 +686,8 @@ const Portfolio = () => {
             ))}
             
             {/* Final framework cards */}
-            <FrameworkCard key="pytorch" iconSrc="/logo/pytorch.png" iconAlt="Pytorch" />
-            <FrameworkCard key="numpy" iconSrc="/logo/numpy.png" iconAlt="Numpy"/>
+            <FrameworkCard key="pytorch" iconSrc={`${process.env.PUBLIC_URL}/logo/pytorch.png`} iconAlt="Pytorch" />
+            <FrameworkCard key="numpy" iconSrc={`${process.env.PUBLIC_URL}/logo/numpy.png`} iconAlt="Numpy"/>
             
             {/* Remaining empty cells */}
             {Array(22).fill(null).map((_, index) => (
@@ -782,7 +737,7 @@ const Portfolio = () => {
                   </div>
                   <div className="contact-text">
                     <h4>Resume</h4>
-                    <a href="/Heeba_Merchant_Resume.pdf" download className="resume-link">
+                    <a href={`${process.env.PUBLIC_URL}/Heeba_Merchant_Resume.pdf`} download className="resume-link">
                       Download Resume
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>

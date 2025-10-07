@@ -5,27 +5,11 @@ import ProjectNavBar from './ProjectNavBar';
 
 const EffectiveTeamDynamics = () => {
   const [scrollY, setScrollY] = useState(0);
-  const [activeSection, setActiveSection] = useState('intro');
   const [activeFeature, setActiveFeature] = useState('auth');
 
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
-      
-      // Update active section based on scroll position
-      const sections = ['intro', 'overview', 'architecture', 'ui', 'tech', 'features', 'team'];
-      const scrollPosition = window.scrollY + window.innerHeight / 3;
-      
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
     };
 
     window.addEventListener('scroll', handleScroll);

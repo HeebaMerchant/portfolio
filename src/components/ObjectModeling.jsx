@@ -99,6 +99,7 @@ const MediaProjectDemo = () => {
             <a 
               href="/Object%20Modeling/2a/index.html" 
               target="_blank"
+              rel="noreferrer"
               className="px-4 py-2 bg-purple-600 text-white rounded-full text-sm hover:bg-purple-700 transition-colors flex items-center space-x-2"
             >
               <Play className="w-4 h-4" />
@@ -107,6 +108,7 @@ const MediaProjectDemo = () => {
             <a 
               href="/Object%20Modeling/2b/index.html" 
               target="_blank"
+              rel="noreferrer"
               className="px-4 py-2 bg-blue-600 text-white rounded-full text-sm hover:bg-blue-700 transition-colors flex items-center space-x-2"
             >
               <Play className="w-4 h-4" />
@@ -149,6 +151,7 @@ const MediaProjectDemo = () => {
                   <a 
                     href={activeTab === 'part1' ? '/Object%20Modeling/2a/index.html' : '/Object%20Modeling/2b/index.html'}
                     target="_blank"
+                    rel="noreferrer"
                     className="inline-flex items-center space-x-2 bg-white text-black px-6 py-3 rounded-full hover:bg-gray-200 transition-colors"
                   >
                     <Play className="w-5 h-5" />
@@ -303,6 +306,7 @@ const MediaProjectDemo = () => {
             <a 
               href="/Object%20Modeling/2a/project_2a.js" 
               target="_blank"
+              rel="noreferrer"
               className="text-purple-400 hover:text-purple-300 transition-colors"
             >
               <Code className="w-5 h-5 inline mr-2" />
@@ -311,6 +315,7 @@ const MediaProjectDemo = () => {
             <a 
               href="/Object%20Modeling/2b/project_2b.js" 
               target="_blank"
+              rel="noreferrer"
               className="text-blue-400 hover:text-blue-300 transition-colors"
             >
               <Code className="w-5 h-5 inline mr-2" />
@@ -319,6 +324,7 @@ const MediaProjectDemo = () => {
             <a 
               href="/Object%20Modeling/2a/Merchant_Heeba.png" 
               target="_blank"
+              rel="noreferrer"
               className="text-green-400 hover:text-green-300 transition-colors"
             >
               <Box className="w-5 h-5 inline mr-2" />

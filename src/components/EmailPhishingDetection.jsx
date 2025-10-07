@@ -1,20 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './EmailPhishingDetection.css';
 import BackButton from './BackButton';
 import ProjectNavBar from './ProjectNavBar';
 
 const EmailPhishingDetection = () => {
-  const [activeSection, setActiveSection] = useState('overview');
-  const [scrollY, setScrollY] = useState(0);
   const [selectedModel, setSelectedModel] = useState('rf');
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   // Define navigation links for this project
   const navLinks = [

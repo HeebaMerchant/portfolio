@@ -1,17 +1,39 @@
 import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './BackButton.css';
 
 const BackButton = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const handleBack = () => {
-    if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
-      // Already on main page, just scroll
+    if (location.pathname === '/' || location.pathname === '/portfolio/' || location.pathname === '/portfolio') {
+      // Already on main page, just scroll to projects section
       const section = document.getElementById('section-projects');
       if (section) {
         section.scrollIntoView({ behavior: 'smooth' });
       }
     } else {
-      // Not on main page, go to main page with hash
-      window.location.href = '/#section-projects';
+      // Not on main page, navigate to main page and jump directly to projects
+      navigate('/', { state: { scrollToProjects: true } });
+      
+      // Wait for navigation to complete, then immediately jump to projects section
+      setTimeout(() => {
+        const section = document.getElementById('section-projects');
+        if (section) {
+          // Disable smooth scrolling temporarily for instant jump
+          const htmlElement = document.documentElement;
+          const originalBehavior = htmlElement.style.scrollBehavior;
+          htmlElement.style.scrollBehavior = 'auto';
+          
+          section.scrollIntoView({ behavior: 'auto' });
+          
+          // Restore smooth scrolling
+          setTimeout(() => {
+            htmlElement.style.scrollBehavior = originalBehavior;
+          }, 10);
+        }
+      }, 50);
     }
   };
 
