@@ -76,7 +76,7 @@ const EffectiveTeamDynamics = () => {
               <a href="https://etdworkshop.mse.gatech.edu/" target="_blank" rel="noopener noreferrer" className="btn-secondary">
                 Visit Workshop Website
               </a>
-              <a 
+              {/* <a 
                 href="/" 
                 onClick={(e) => {
                   e.preventDefault();
@@ -86,7 +86,7 @@ const EffectiveTeamDynamics = () => {
                 className="btn-secondary"
               >
                 Contact Team
-              </a>
+              </a> */}
             </div>
           </div>
         </div>

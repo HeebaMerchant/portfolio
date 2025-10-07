@@ -616,12 +616,12 @@ const Portfolio = () => {
               </div>
             </div>
           </div>
-          
+{/*           
           <div className="view-all-container">
             <button className="view-all-button" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
               View All Projects <span className="arrow-icon">→</span>
             </button>
-          </div>
+          </div> */}
         </div>
 
         <div className="animation-Scroll"></div>
