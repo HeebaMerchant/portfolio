@@ -23,9 +23,10 @@ const SympliPage = () => {
     { id: 'problem', label: 'Problem' },
     { id: 'solution', label: 'Solution' },
     { id: 'tech', label: 'Tech Stack' },
+    { id: 'process', label: 'Process' },
     { id: 'challenges', label: 'Challenges' },
-    { id: 'accomplishments', label: 'Accomplishments' },
-    { id: 'future', label: 'Future Plans' }
+    { id: 'accomplishments', label: 'Accomplishments' }
+    // { id: 'future', label: 'Future Plans' }
   ];
   
   return (
@@ -367,7 +368,7 @@ const SympliPage = () => {
         </div>
       </div>
       
-      {/* Call to action footer */}
+      {/* Call to action footer
       <div className="cta-section">
         <div className="content-container">
           <h2 className="cta-title">Interested in working together?</h2>
@@ -383,7 +384,7 @@ const SympliPage = () => {
             Get in touch →
           </a>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

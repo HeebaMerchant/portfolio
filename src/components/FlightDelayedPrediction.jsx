@@ -421,7 +421,7 @@ const FlightDelayedPrediction = () => {
         </div>
       </div>
       
-      {/* CTA Section */}
+      {/* CTA Section
       <div className="fdp-cta-section">
         <div className="fdp-content-container">
           <h2 className="fdp-cta-title">Ready to make more informed travel decisions?</h2>
@@ -438,7 +438,7 @@ const FlightDelayedPrediction = () => {
             Get in touch →
           </a>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

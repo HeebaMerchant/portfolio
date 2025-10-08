@@ -506,6 +506,13 @@ const Portfolio = () => {
               <p>Placed 3rd at Hacklytics 2025 under the Generative AI category for Sympli healthcare app</p>
               <span className="achievement-date">2025</span>
             </div>
+
+            <div className="achievement-card">
+              <div className="achievement-icon">🏆</div>
+              <h3>Capstone Expo Winner</h3>
+              <p>Placed 1st at Georgia Tech Capstone Expo 2025 for Effective Team Dynamics project</p>
+              <span className="achievement-date">2025</span>
+            </div>
           </div>
         </div>
       </section>
