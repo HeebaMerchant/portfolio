@@ -238,6 +238,7 @@ const EmailPhishingDetection = () => {
           <div className="section-header">
             <span className="section-label">Machine Learning</span>
             <h2 className="section-title">Model Performance</h2>
+            <p className="section-description">Click on the models below to view more details</p>
           </div>
           
           <div className="models-selector">
@@ -365,13 +366,25 @@ const EmailPhishingDetection = () => {
           
           <div className="confusion-matrix-analysis">
             <h3>Confusion Matrix Analysis</h3>
+            
+            <div className="matrix-legend">
+              <div className="legend-item">
+                <span className="legend-label fp">FP (False Positive)</span>
+                <span className="legend-description">Legitimate email incorrectly classified as phishing</span>
+              </div>
+              <div className="legend-item">
+                <span className="legend-label fn">FN (False Negative)</span>
+                <span className="legend-description">Phishing email incorrectly classified as legitimate</span>
+              </div>
+            </div>
+            
             <div className="matrix-cards">
               <div className="matrix-card">
                 <h4>Random Forest</h4>
                 <p>Best overall: Minimal false positives and negatives</p>
                 <div className="matrix-stats">
                   <span>FP: Very Low</span>
-                  <span>FN: Very Low</span>
+                  <span className="legend-label fn">FN: Very Low</span>
                 </div>
               </div>
               <div className="matrix-card">
@@ -379,7 +392,7 @@ const EmailPhishingDetection = () => {
                 <p>Balanced performance with slight FP increase</p>
                 <div className="matrix-stats">
                   <span>FP: Low</span>
-                  <span>FN: Low</span>
+                  <span className="legend-label fn">FN: Low</span>
                 </div>
               </div>
               <div className="matrix-card">
@@ -387,7 +400,7 @@ const EmailPhishingDetection = () => {
                 <p>Conservative: Minimizes FP at cost of high FN</p>
                 <div className="matrix-stats">
                   <span>FP: Very Low</span>
-                  <span>FN: High</span>
+                  <span className="legend-label fn">FN: High</span>
                 </div>
               </div>
             </div>
@@ -463,102 +476,57 @@ const EmailPhishingDetection = () => {
             <h2 className="section-title">Future Improvements</h2>
           </div>
           
-          <div className="future-cards">
-            <div className="future-card">
-              <div className="future-icon">🎯</div>
-              <h3>Class Balancing</h3>
-              <p>Implement SMOTE or class weights to improve SVM recall performance and handle false negatives</p>
-            </div>
-            <div className="future-card">
-              <div className="future-icon">⚡</div>
-              <h3>Kernel Methods</h3>
-              <p>Test RBF and polynomial kernels for SVM to capture non-linear relationships in data</p>
-            </div>
-            <div className="future-card">
-              <div className="future-icon">🔄</div>
-              <h3>Real-time Testing</h3>
-              <p>Deploy models on real-world imbalanced datasets to validate performance</p>
-            </div>
-            <div className="future-card">
-              <div className="future-icon">🚀</div>
-              <h3>Production API</h3>
-              <p>Create deployable email security filter with REST API for integration</p>
-            </div>
-            <div className="future-card">
-              <div className="future-icon">🧠</div>
-              <h3>Deep Learning</h3>
-              <p>Explore LSTM/Transformer models for better context understanding</p>
-            </div>
-            <div className="future-card">
-              <div className="future-icon">📊</div>
-              <h3>Feature Enhancement</h3>
-              <p>Add sender reputation, attachment analysis, and header anomaly detection</p>
-            </div>
-            <div className="future-card">
-              <div className="future-icon">🔍</div>
-              <h3>Ensemble Methods</h3>
-              <p>Combine top models using voting or stacking for improved robustness</p>
-            </div>
-            <div className="future-card">
-              <div className="future-icon">⏱️</div>
-              <h3>Real-time Processing</h3>
-              <p>Optimize for sub-second classification of incoming emails</p>
-            </div>
-          </div>
-          
-          <div className="implementation-timeline">
-            <h3>Implementation Roadmap</h3>
-            <div className="roadmap-items">
-              <div className="roadmap-item">
-                <div className="roadmap-phase">Phase 1</div>
-                <h4>Research & Optimization</h4>
-                <ul className="roadmap-list">
-                  <li>Implement SMOTE for better class balance</li>
-                  <li>Test RBF kernel for SVM to improve recall</li>
-                  <li>Optimize Random Forest hyperparameters</li>
-                  <li>Benchmark against 20k imbalanced dataset</li>
-                </ul>
+          <div className="future-categories">
+            <div className="future-category">
+              <div className="category-header">
+                <div className="category-icon">🔬</div>
+                <h3>Research & Optimization</h3>
               </div>
-              <div className="roadmap-item">
-                <div className="roadmap-phase">Phase 2</div>
-                <h4>Feature Engineering</h4>
-                <ul className="roadmap-list">
-                  <li>Add sender reputation analysis module</li>
-                  <li>Implement attachment scanning & risk assessment</li>
-                  <li>Develop header anomaly detection algorithm</li>
-                  <li>Create contextual keyword analysis with BERT</li>
-                </ul>
+              <ul className="category-list">
+                <li>Implement SMOTE or class weights for improved SVM recall</li>
+                <li>Test RBF and polynomial kernels for non-linear relationships</li>
+                <li>Optimize Random Forest hyperparameters</li>
+                <li>Validate on real-world imbalanced datasets</li>
+              </ul>
+            </div>
+            
+            <div className="future-category">
+              <div className="category-header">
+                <div className="category-icon">🧠</div>
+                <h3>Advanced Models</h3>
               </div>
-              <div className="roadmap-item">
-                <div className="roadmap-phase">Phase 3</div>
-                <h4>API Development</h4>
-                <ul className="roadmap-list">
-                  <li>Build Flask/FastAPI REST service with JWT auth</li>
-                  <li>Implement model pipeline with scikit-learn</li>
-                  <li>Add real-time preprocessing microservice</li>
-                  <li>Set up Docker containers for deployment</li>
-                </ul>
+              <ul className="category-list">
+                <li>Explore LSTM/Transformer models for context understanding</li>
+                <li>Implement ensemble methods with voting or stacking</li>
+                <li>Add sender reputation and header anomaly detection</li>
+                <li>Enhance feature extraction with BERT embeddings</li>
+              </ul>
+            </div>
+            
+            <div className="future-category">
+              <div className="category-header">
+                <div className="category-icon">🚀</div>
+                <h3>Production Deployment</h3>
               </div>
-              <div className="roadmap-item">
-                <div className="roadmap-phase">Phase 4</div>
-                <h4>Integration</h4>
-                <ul className="roadmap-list">
-                  <li>Develop Outlook/Gmail add-ins for direct scanning</li>
-                  <li>Create browser extension for webmail protection</li>
-                  <li>Build SMTP proxy for server-side filtering</li>
-                  <li>Implement logging and analytics dashboard</li>
-                </ul>
+              <ul className="category-list">
+                <li>Build REST API with Flask/FastAPI and JWT authentication</li>
+                <li>Create real-time preprocessing microservice</li>
+                <li>Develop Outlook/Gmail add-ins for direct integration</li>
+                <li>Optimize for sub-second classification performance</li>
+              </ul>
+            </div>
+            
+            <div className="future-category">
+              <div className="category-header">
+                <div className="category-icon">📊</div>
+                <h3>Infrastructure & Monitoring</h3>
               </div>
-              <div className="roadmap-item">
-                <div className="roadmap-phase">Phase 5</div>
-                <h4>Deployment & Monitoring</h4>
-                <ul className="roadmap-list">
-                  <li>Deploy to AWS/GCP with auto-scaling</li>
-                  <li>Set up CI/CD pipeline with GitHub Actions</li>
-                  <li>Implement A/B testing framework for model updates</li>
-                  <li>Create feedback loop for continuous improvement</li>
-                </ul>
-              </div>
+              <ul className="category-list">
+                <li>Deploy to AWS/GCP with auto-scaling and load balancing</li>
+                <li>Set up CI/CD pipeline with automated testing</li>
+                <li>Implement A/B testing framework for model updates</li>
+                <li>Create analytics dashboard and feedback loop system</li>
+              </ul>
             </div>
           </div>
         </div>
