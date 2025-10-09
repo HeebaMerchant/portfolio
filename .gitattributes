@@ -1,2 +1,2 @@
-*.mp4 filter=lfs diff=lfs merge=lfs -text
-ATLFoodFinderDemoVideo.mp4 filter=lfs diff=lfs merge=lfs -text
+# Disable LFS for deployed build
+* -filter -diff -merge -text
