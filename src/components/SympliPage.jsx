@@ -46,10 +46,8 @@ const SympliPage = () => {
     { id: 'solution', label: 'Solution' },
     { id: 'demo', label: 'Demo' },
     { id: 'tech', label: 'Tech Stack' },
-    { id: 'process', label: 'Process' },
     { id: 'challenges', label: 'Challenges' },
     { id: 'accomplishments', label: 'Accomplishments' }
-    // { id: 'future', label: 'Future Plans' }
   ];
   
   return (
