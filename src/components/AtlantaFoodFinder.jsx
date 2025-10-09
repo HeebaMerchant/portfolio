@@ -1,10 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './AtlantaFoodFinder.css';
 import BackButton from './BackButton';
 import ProjectNavBar from './ProjectNavBar';
 
 const AtlantaFoodFinder = () => {
   const [activeTab, setActiveTab] = useState('search');
+
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in-visible');
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    const elements = document.querySelectorAll('.fade-in-section, .fade-in-card');
+    elements.forEach(el => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
 
   // Define navigation links for this project
   const navLinks = [
@@ -20,37 +42,37 @@ const AtlantaFoodFinder = () => {
     {
       title: 'User Authentication',
       desc: 'Register or log in to access personalized features like saving favorites and leaving reviews. Secure authentication and password reset included.',
-      img: '/ATL Food Finder/login.png',
+      img: `${process.env.PUBLIC_URL}/ATL Food Finder/login.png`,
     },
     {
       title: 'Home',
       desc: 'Home page with search interface and navigation to other pages',
-      img: '/ATL Food Finder/home.gif',
+      img: `${process.env.PUBLIC_URL}/ATL Food Finder/home.png`,
     },
     {
       title: 'Restaurant Search',
       desc: 'Search for restaurants by name, address, cuisine, or rating. Use advanced filters to find exactly what you are craving.',
-      img: '/ATL Food Finder/search.png',
+      img: `${process.env.PUBLIC_URL}/ATL Food Finder/search.png`,
     },
     {
       title: 'Geolocation & Map',
       desc: 'View search results on an interactive map. Click pins to see details and get directions to restaurants across Atlanta.',
-      img: '/ATL Food Finder/map.png',
+      img: `${process.env.PUBLIC_URL}/ATL Food Finder/map.png`,
     },
     {
       title: 'Restaurant Details',
       desc: 'See detailed info: address, contact, cuisine, ratings, and reviews. Decide where to eat with confidence.',
-      img: '/ATL Food Finder/detail.png',
+      img: `${process.env.PUBLIC_URL}/ATL Food Finder/detail.png`,
     },
     {
       title: 'User Reviews',
       desc: 'Read and leave reviews for restaurants you have visited. See up-to-date ratings and help others make informed choices.',
-      img: '/ATL Food Finder/review.png',
+      img: `${process.env.PUBLIC_URL}/ATL Food Finder/review.png`,
     },
     {
       title: 'Favorites',
       desc: 'Add restaurants to your favorites for quick access. Curate your own list of go-to spots in Atlanta.',
-      img: '/ATL Food Finder/favorite.png',
+      img: `${process.env.PUBLIC_URL}/ATL Food Finder/favorite.png`,
     }
   ];
 
@@ -118,7 +140,7 @@ const AtlantaFoodFinder = () => {
       </section>
 
       {/* Features Section */}
-      <section className="features-section" id="features">
+      <section className="features-section fade-in-section" id="features">
         <div className="section-wrapper">
           <div className="section-header">
             <span className="section-tag">Features</span>
@@ -169,7 +191,7 @@ const AtlantaFoodFinder = () => {
       </section>
 
       {/* Tech Stack Section */}
-      <section className="tech-section" id="tech">
+      <section className="tech-section fade-in-section" id="tech">
         <div className="section-wrapper">
           <div className="section-header">
             <span className="section-tag">Technology</span>
@@ -241,11 +263,11 @@ const AtlantaFoodFinder = () => {
       </section>
 
       {/* User Flow - Card Grid */}
-      <div className="section-header">
+      <div className="section-header fade-in-section">
             {/* <span className="section-tag">Technology</span> */}
             <h2 className="section-title">User Flow: How It Works</h2>
       </div>
-      <section className="userflow-grid-section dark-card" id="flow">
+      <section className="userflow-grid-section dark-card fade-in-section" id="flow">
         {/* <h2 className="section-title">User Flow: How It Works</h2> */}
         <div className="userflow-grid">
           {userflowSteps.map((step, idx) => (
@@ -299,26 +321,26 @@ const AtlantaFoodFinder = () => {
       </section> */}
 
       {/* Demo Video Section */}
-      <div className="section-header" id="demo-video">
+      <div className="section-header fade-in-section" id="demo-video">
             {/* <span className="section-tag">Technology</span> */}
             <h2 className="section-title">Watch the Demo</h2>
       </div>
-      <section className="demo-video-section" id="demo-video">
-        <video src="/ATL Food Finder/ATLFoodFinderDemoVideo.mp4" controls style={{ width: '100%', maxWidth: '800px', margin: '0 auto' }} />
+      <section className="demo-video-section fade-in-section" id="demo-video">
+        <video src={`${process.env.PUBLIC_URL}/ATL Food Finder/ATLFoodFinderDemoVideo.mp4`} controls style={{ width: '100%', maxWidth: '800px', margin: '0 auto' }} />
       </section>
 
       {/* Footer */}
       <footer className="footer">
         <div className="footer-content">
-          <div className="footer-brand">
+          {/* <div className="footer-brand">
             <span>🍴</span>
             <span>Atlanta Food Finder</span>
-          </div>
+          </div> */}
           <div className="footer-links">
             <a href="https://sites.google.com/view/group4teamwebsite">Website</a>
             <a href="https://github.com/HeebaMerchant">GitHub</a>
           </div>
-          <div className="footer-year">© 2024</div>
+          <div className="footer-year"> May 2024 - July 2024</div>
         </div>
       </footer>
     </div>

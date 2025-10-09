@@ -16,6 +16,29 @@ const EffectiveTeamDynamics = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in-visible');
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    // Observe all sections and cards
+    const elements = document.querySelectorAll('.fade-in-section, .fade-in-card');
+    elements.forEach(el => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   const parallaxOffset = scrollY * 0.5;
   
   // Define navigation links for this project
@@ -93,7 +116,7 @@ const EffectiveTeamDynamics = () => {
       </section>
 
       {/* Overview Section */}
-      <section id="overview" className="content-section overview-section">
+      <section id="overview" className="content-section overview-section fade-in-section">
         <div className="content-wrapper">
           <div className="section-header">
             <h2>Project Overview</h2>
@@ -103,7 +126,7 @@ const EffectiveTeamDynamics = () => {
           <div className="overview-grid">
             <div className="overview-item">
               <div className="overview-image">
-                <img src="/etd/home.png" alt="Dashboard" />
+                <img src={`${process.env.PUBLIC_URL}/etd/dashboard.png`} alt="Dashboard" />
               </div>
               <div className="overview-text">
                 <h3>Digital Transformation</h3>
@@ -118,7 +141,7 @@ const EffectiveTeamDynamics = () => {
             
             <div className="overview-item reverse">
               <div className="overview-image">
-                <img src="/etd/activities.png" alt="Activities Interface" />
+                <img src={`${process.env.PUBLIC_URL}/etd/activities.png`} alt="Activities Interface" />
               </div>
               <div className="overview-text">
                 <h3>Key Benefits</h3>
@@ -135,7 +158,7 @@ const EffectiveTeamDynamics = () => {
       </section>
 
       {/* Architecture Section */}
-      <section id="architecture" className="content-section architecture-section">
+      <section id="architecture" className="content-section architecture-section fade-in-section">
         <div className="content-wrapper">
           <div className="section-header">
             <h2>System Architecture</h2>
@@ -224,14 +247,14 @@ const EffectiveTeamDynamics = () => {
       </section>
 
       {/* UI Design Section */}
-      <section id="ui" className="content-section ui-section">
+      <section id="ui" className="content-section ui-section fade-in-section">
         <div className="content-wrapper">
           <div className="section-header">
             <h2>UI Design</h2>
             <p className="section-subtitle">User-centered design principles</p>
           </div>
           
-          <div className="ui-principles">
+          <div className="ui-principles fade-in-card">
             <div className="principle-item">
               <div className="principle-icon">✨</div>
               <h4>Aesthetic and Minimalist Design</h4>
@@ -325,7 +348,7 @@ const EffectiveTeamDynamics = () => {
       </section>
 
       {/* Tech Stack Section */}
-      <section id="tech" className="content-section tech-section">
+      <section id="tech" className="content-section tech-section fade-in-section">
         <div className="content-wrapper">
           <div className="section-header">
             <h2>Technology Stack</h2>
@@ -335,7 +358,7 @@ const EffectiveTeamDynamics = () => {
           <div className="tech-grid">
             <div className="tech-item">
               <div className="tech-icon">
-                <img src="/logo/react.png" alt="React" />
+                <img src={`${process.env.PUBLIC_URL}/logo/react.png`} alt="React" />
               </div>
               <h4>React</h4>
               <p>Frontend framework for building interactive UI</p>
@@ -343,7 +366,7 @@ const EffectiveTeamDynamics = () => {
             
             <div className="tech-item">
               <div className="tech-icon">
-                <img src="/logo/nodeJS.png" alt="Node.js" />
+                <img src={`${process.env.PUBLIC_URL}/logo/nodeJS.png`} alt="Node.js" />
               </div>
               <h4>Node.js</h4>
               <p>JavaScript runtime for server-side development</p>
@@ -351,7 +374,7 @@ const EffectiveTeamDynamics = () => {
             
             <div className="tech-item">
               <div className="tech-icon">
-                <img src="/logo/sqlite.png" alt="SQLite" />
+                <img src={`${process.env.PUBLIC_URL}/logo/sqlite.png`} alt="SQLite" />
               </div>
               <h4>SQLite</h4>
               <p>Lightweight database for persistent data storage</p>
@@ -359,7 +382,7 @@ const EffectiveTeamDynamics = () => {
             
             <div className="tech-item">
               <div className="tech-icon">
-                <img src="/logo/sequelize.svg" alt="Sequelize" />
+                <img src={`${process.env.PUBLIC_URL}/logo/sequelize.svg`} alt="Sequelize" />
               </div>
               <h4>Sequelize</h4>
               <p>ORM for database operations and migrations</p>
@@ -367,7 +390,7 @@ const EffectiveTeamDynamics = () => {
             
             <div className="tech-item">
               <div className="tech-icon">
-                <img src="/logo/expressJS.png" alt="Express" />
+                <img src={`${process.env.PUBLIC_URL}/logo/expressJS.png`} alt="Express" />
               </div>
               <h4>Express</h4>
               <p>Web framework for building API endpoints</p>
@@ -375,7 +398,7 @@ const EffectiveTeamDynamics = () => {
             
             <div className="tech-item">
               <div className="tech-icon">
-                <img src="/logo/JWT.svg" alt="JWT" />
+                <img src={`${process.env.PUBLIC_URL}/logo/JWT.svg`} alt="JWT" />
               </div>
               <h4>JWT</h4>
               <p>Token-based authentication for secure sessions</p>
@@ -407,11 +430,15 @@ const EffectiveTeamDynamics = () => {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="content-section features-section">
+      <section id="features" className="content-section features-section fade-in-section">
         <div className="content-wrapper">
           <div className="section-header">
             <h2>Key Features</h2>
-            <p className="section-subtitle">Empowering teams through digital collaboration</p>
+            <p className="section-subtitle">
+            Empowering teams through digital collaboration
+            <br />
+            (Click on the features to see the demo)
+            </p>
           </div>
           
           <div className="features-showcase">
@@ -425,11 +452,31 @@ const EffectiveTeamDynamics = () => {
                   </div>
                 </div>
                 <div className="preview-content">
-                  {activeFeature === 'auth' && <img src="/etd/GT SSO/GT SSO.gif" alt="Authentication" />}
-                  {activeFeature === 'strength' && <img src="/etd/strengths/strengths.gif" alt="Strength Selection" />}
-                  {activeFeature === 'team' && <img src="/etd/team/team.gif" alt="Team Management" />}
-                  {activeFeature === 'activities' && <img src="/etd/activity/activity.gif" alt="Interactive Activities" />}
-                  {activeFeature === 'pdf' && <img src="/etd/pdf/pdf.gif" alt="PDF Report Generation" />}
+                  {activeFeature === 'auth' && (
+                    <video autoPlay loop muted playsInline>
+                      <source src={`${process.env.PUBLIC_URL}/etd/GT SSO/GT SSO.mp4`} type="video/mp4" />
+                    </video>
+                  )}
+                  {activeFeature === 'strength' && (
+                    <video autoPlay loop muted playsInline>
+                      <source src={`${process.env.PUBLIC_URL}/etd/strengths/strengths.mp4`} type="video/mp4" />
+                    </video>
+                  )}
+                  {activeFeature === 'team' && (
+                    <video autoPlay loop muted playsInline>
+                      <source src={`${process.env.PUBLIC_URL}/etd/team/team.mp4`} type="video/mp4" />
+                    </video>
+                  )}
+                  {activeFeature === 'activities' && (
+                    <video autoPlay loop muted playsInline>
+                      <source src={`${process.env.PUBLIC_URL}/etd/activity/activity.mp4`} type="video/mp4" />
+                    </video>
+                  )}
+                  {activeFeature === 'pdf' && (
+                    <video autoPlay loop muted playsInline>
+                      <source src={`${process.env.PUBLIC_URL}/etd/pdf/pdf.mp4`} type="video/mp4" />
+                    </video>
+                  )}
                 </div>
               </div>
             </div>
@@ -526,7 +573,7 @@ const EffectiveTeamDynamics = () => {
       </section>
 
       {/* Team Section */}
-      <section id="team" className="content-section team-section">
+      <section id="team" className="content-section team-section fade-in-section">
         <div className="content-wrapper">
           <div className="section-header">
             <h2>Development Team</h2>

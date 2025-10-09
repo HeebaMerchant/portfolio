@@ -17,6 +17,28 @@ const FlightDelayedPrediction = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in-visible');
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    const elements = document.querySelectorAll('.fade-in-section, .fade-in-card');
+    elements.forEach(el => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   // Define navigation links for this project
   const navLinks = [
     { id: 'hero', label: 'Overview' },
@@ -85,7 +107,7 @@ const FlightDelayedPrediction = () => {
       </div>
       
       {/* Problem Section */}
-      <div className="fdp-section fdp-section-blue" id="problem">
+      <div className="fdp-section fdp-section-blue fade-in-section" id="problem">
         <div className="fdp-content-container">
           <h2 className="fdp-section-title">The Problem</h2>
           <div className="fdp-section-grid">
@@ -119,7 +141,7 @@ const FlightDelayedPrediction = () => {
       </div>
 
       {/* Approach Section */}
-      <div className="fdp-section fdp-section-light" id="approach">
+      <div className="fdp-section fdp-section-light fade-in-section" id="approach">
         <div className="fdp-content-container">
           <h2 className="fdp-section-title">Our Approach</h2>
           
@@ -213,7 +235,7 @@ const FlightDelayedPrediction = () => {
       </div>
       
       {/* Key Features */}
-      <div className="fdp-section fdp-section-dark" id="features">
+      <div className="fdp-section fdp-section-dark fade-in-section" id="features">
         <div className="fdp-content-container">
           <h2 className="fdp-section-title">Key Features</h2>
           
@@ -284,7 +306,7 @@ const FlightDelayedPrediction = () => {
       </div>
       
       {/* Tech Stack */}
-      <div className="fdp-section fdp-section-light" id="tech">
+      <div className="fdp-section fdp-section-light fade-in-section" id="tech">
         <div className="fdp-content-container">
           <h2 className="fdp-section-title">Technology Stack</h2>
           
@@ -326,7 +348,7 @@ const FlightDelayedPrediction = () => {
       </div>
       
       {/* Challenges Section */}
-      <div className="fdp-section fdp-section-blue" id="challenges">
+      <div className="fdp-section fdp-section-blue fade-in-section" id="challenges">
         <div className="fdp-content-container">
           <h2 className="fdp-section-title">Challenges We Overcame</h2>
           
@@ -359,7 +381,7 @@ const FlightDelayedPrediction = () => {
       </div>
       
       {/* Future Development */}
-      <div className="fdp-section fdp-section-gradient" id="future">
+      <div className="fdp-section fdp-section-gradient fade-in-section" id="future">
         <div className="fdp-content-container">
           <h2 className="fdp-section-title">Future Developments</h2>
           

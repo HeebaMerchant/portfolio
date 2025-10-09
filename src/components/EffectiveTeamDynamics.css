@@ -38,6 +38,38 @@
     min-height: 100vh;
     line-height: 1.6;
   }
+
+  /* Scroll Animation Styles */
+  .fade-in-section,
+  .fade-in-card {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .fade-in-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Staggered animation for children */
+  .fade-in-card > * {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .fade-in-visible > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .fade-in-visible > *:nth-child(1) { transition-delay: 0.1s; }
+  .fade-in-visible > *:nth-child(2) { transition-delay: 0.2s; }
+  .fade-in-visible > *:nth-child(3) { transition-delay: 0.3s; }
+  .fade-in-visible > *:nth-child(4) { transition-delay: 0.4s; }
+  .fade-in-visible > *:nth-child(5) { transition-delay: 0.5s; }
+  .fade-in-visible > *:nth-child(6) { transition-delay: 0.6s; }
   
   /* Modern Navigation with Glass Effect */
   .etd-nav {
@@ -489,11 +521,18 @@
   .preview-dots span:nth-child(2) { background-color: #ffbd2e; }
   .preview-dots span:nth-child(3) { background-color: #27c93f; }
   
-  .preview-content img {
+  .preview-content img,
+  .preview-content video {
     width: 100%;
     height: auto;
     display: block;
     opacity: 0.9;
+  }
+  
+  .preview-content video {
+    max-height: 600px;
+    object-fit: contain;
+    background: #000;
   }
   
   .features-list {
@@ -816,6 +855,7 @@
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    align-items: center;
   }
 
   .arch-layer:hover {
@@ -859,7 +899,7 @@
     list-style-type: none;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 0.75rem;
+    gap: 3rem;
     margin-top: 1rem;
   }
 
@@ -1058,7 +1098,7 @@
   .entity-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1.5rem;
+    gap: 6rem;
   }
 
   .entity-card {

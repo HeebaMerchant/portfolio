@@ -17,11 +17,34 @@ const SympliPage = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in-visible');
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    const elements = document.querySelectorAll('.fade-in-section, .fade-in-card');
+    elements.forEach(el => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   // Define navigation links for this project
   const navLinks = [
     { id: 'overview', label: 'Overview' },
     { id: 'problem', label: 'Problem' },
     { id: 'solution', label: 'Solution' },
+    { id: 'demo', label: 'Demo' },
     { id: 'tech', label: 'Tech Stack' },
     { id: 'process', label: 'Process' },
     { id: 'challenges', label: 'Challenges' },
@@ -87,7 +110,7 @@ const SympliPage = () => {
       </div>
       
       {/* Problem & Inspiration Section */}
-      <div className="section section-gradient" id="problem">
+      <div className="section section-gradient fade-in-section" id="problem">
         <div className="content-container">
           <div style={{ maxWidth: "800px", margin: "0 auto" }}>
             <h2 className="section-title">The Problem & Inspiration</h2>
@@ -118,7 +141,7 @@ const SympliPage = () => {
       </div>
       
       {/* Solution Section */}
-      <div className="section section-dark" id="solution">
+      <div className="section section-dark fade-in-section" id="solution">
         <div className="content-container">
           <div style={{ maxWidth: "1500px", width: "100%" }}>
             <h2 className="section-title">Our Solution</h2>
@@ -182,8 +205,84 @@ const SympliPage = () => {
         </div>
       </div>
       
+      {/* Demo Section */}
+      <div className="section section-light fade-in-section" id="demo">
+        <div className="content-container">
+          <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+            <h2 className="section-title">See Sympli in Action</h2>
+            <p className="section-text" style={{ textAlign: "center", marginBottom: "3rem" }}>
+              Experience how Sympli transforms symptom tracking through an intuitive interface and intelligent insights
+            </p>
+            
+            {/* Demo steps */}
+            <div className="demo-walkthrough">
+              <div className="demo-step">
+                <div className="demo-step-number">01</div>
+                <div className="demo-step-content">
+                  <h3 className="demo-step-title">Easy Sign-up & Authentication</h3>
+                  <p className="demo-step-text">
+                    Users create an account through our secure Firebase authentication system. The process is quick and ensures that all symptom data remains private and protected.
+                  </p>
+                  <div className="demo-image-placeholder">
+                    <video className="demo-gif" autoPlay loop muted playsInline>
+                      <source src={`${process.env.PUBLIC_URL}/Sympli/auth/auth.mp4`} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="demo-step">
+                <div className="demo-step-number">02</div>
+                <div className="demo-step-content">
+                  <h3 className="demo-step-title">AI-Powered Symptom Logging</h3>
+                  <p className="demo-step-text">
+                    Our Gemini 2.0 AI chatbot engages users in natural conversation, asking targeted questions to gather comprehensive symptom information. The AI adapts its questions based on user responses, ensuring relevant data collection.
+                  </p>
+                  <div className="demo-image-placeholder">
+                    <video className="demo-gif" autoPlay loop muted playsInline>
+                      <source src={`${process.env.PUBLIC_URL}/Sympli/chat/chat.mp4`} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="demo-step">
+                <div className="demo-step-number">03</div>
+                <div className="demo-step-content">
+                  <h3 className="demo-step-title">Real-time Data Visualization</h3>
+                  <p className="demo-step-text">
+                    Symptom data is automatically processed and visualized through interactive charts. Users and healthcare providers can track symptom patterns over time, identifying trends and correlations that inform treatment decisions.
+                  </p>
+                  <div className="demo-image-placeholder">
+                    <video className="demo-gif" autoPlay loop muted playsInline>
+                      <source src={`${process.env.PUBLIC_URL}/Sympli/graph/graph.mp4`} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                </div>
+              </div>
+  
+            </div>
+            
+            <div className="demo-cta">
+              <p className="demo-cta-text">Ready to experience Sympli yourself?</p>
+              <a 
+                href="https://sympli-health.web.app/landing" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="primary-button"
+              >
+                Try Live Demo →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
       {/* Tech Stack Section */}
-      <div className="section section-light" id="tech">
+      <div className="section section-light fade-in-section" id="tech">
         <div className="content-container">
           <div style={{ maxWidth: "800px", margin: "0 auto" }}>
             <h2 className="section-title">How We Built It</h2>
@@ -230,7 +329,7 @@ const SympliPage = () => {
       </div>
       
       {/* Challenges Section */}
-      <div className="section section-gradient" id="challenges">
+      <div className="section section-gradient fade-in-section" id="challenges">
         <div className="content-container">
           <div style={{ maxWidth: "800px", margin: "0 auto" }}>
             <h2 className="section-title">Challenges We Faced</h2>
@@ -265,7 +364,7 @@ const SympliPage = () => {
       </div>
       
       {/* Accomplishments Section */}
-      <div className="section section-dark" id="accomplishments">
+      <div className="section section-dark fade-in-section" id="accomplishments">
         <div className="content-container">
           <div style={{ maxWidth: "800px", margin: "0 auto" }}>
             <h2 className="section-title">What We're Proud Of</h2>
@@ -315,7 +414,7 @@ const SympliPage = () => {
       </div>
       
       {/* Future Plans Section */}
-      <div className="section section-light" id="future">
+      <div className="section section-light fade-in-section" id="future">
         <div className="content-container">
           <div style={{ maxWidth: "800px", margin: "0 auto" }}>
             <h2 className="section-title">What's Next for Sympli</h2>
